@@ -3,131 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ARLAN MOTORWORKS | PREMIUM SERVICE</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <title>ARLAN MOTORWORKS</title>
     <style>
-        :root { --gold: #c5a059; --dark-gold: #a68549; --black: #0a0a0a; --grey: #1a1a1a; --white: #ffffff; }
+        :root { --gold: #c5a059; --black: #0a0a0a; --white: #ffffff; }
+        body { font-family: sans-serif; margin: 0; background-color: var(--black); color: var(--white); text-align: center; }
         
-        body { font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; margin: 0; background-color: var(--black); color: var(--white); overflow-x: hidden; }
+        nav { padding: 20px; border-bottom: 2px solid var(--gold); background: #000; }
+        .logo { font-size: 22px; font-weight: bold; color: var(--gold); letter-spacing: 3px; }
+
+        .hero { padding: 60px 20px; background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?q=80&w=1000') center/cover; }
         
-        /* Шапка */
-        nav { background: rgba(0, 0, 0, 0.95); padding: 20px; text-align: center; border-bottom: 2px solid var(--gold); position: sticky; top: 0; z-index: 1000; }
-        .logo { font-size: 26px; font-weight: 900; letter-spacing: 6px; display: flex; align-items: center; justify-content: center; gap: 12px; }
-        .logo i { color: var(--gold); }
-        .logo span { color: var(--gold); }
-
-        /* Главный блок */
-        .hero { 
-            height: 90vh; 
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.95)), 
-            url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1500') center/cover;
-            display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px;
-        }
-        .wolf-main { font-size: 100px; color: var(--gold); margin-bottom: 10px; filter: drop-shadow(0 0 15px rgba(197, 160, 89, 0.5)); }
-        .hero h1 { font-size: 50px; text-transform: uppercase; margin: 0; font-weight: 900; letter-spacing: 2px; line-height: 1.1; }
-        .hero p { color: var(--gold); letter-spacing: 4px; margin: 20px 0 40px; text-transform: uppercase; font-size: 14px; font-weight: bold; }
+        /* Стиль для волка */
+        .wolf-icon { font-size: 100px; color: var(--gold); margin-bottom: 20px; display: block; }
         
-        .btn-group { display: flex; flex-direction: column; gap: 20px; width: 100%; max-width: 320px; }
-        .btn { padding: 20px; text-decoration: none; font-weight: bold; text-transform: uppercase; font-size: 14px; text-align: center; transition: 0.4s; border-radius: 5px; letter-spacing: 1px; }
-        .btn-gold { background: var(--gold); color: black; box-shadow: 0 5px 20px rgba(197, 160, 89, 0.3); }
-        .btn-outline { border: 2px solid var(--gold); color: var(--gold); }
-        .btn:active { transform: scale(0.95); }
+        h1 { font-size: 35px; margin: 10px 0; letter-spacing: 2px; }
+        .subtitle { color: var(--gold); font-weight: bold; margin-bottom: 30px; display: block; }
 
-        /* Преимущества */
-        .features { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; padding: 40px 20px; background: var(--grey); }
-        .f-item { text-align: center; padding: 20px; border: 1px solid #333; border-radius: 10px; }
-        .f-item i { color: var(--gold); font-size: 30px; margin-bottom: 10px; }
-        .f-item div { font-size: 12px; text-transform: uppercase; font-weight: bold; margin-top: 5px; }
+        .btn-group { display: flex; flex-direction: column; gap: 15px; align-items: center; }
+        .btn { width: 85%; max-width: 300px; padding: 18px; text-decoration: none; font-weight: bold; border-radius: 8px; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .btn-call { background: var(--gold); color: black; }
+        .btn-wa { border: 2px solid #25d366; color: #25d366; }
 
-        /* Галерея машин */
-        .gallery { padding: 60px 0; background: var(--black); text-align: center; }
-        .gallery h2 { color: var(--gold); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 30px; }
-        .img-grid { display: grid; grid-template-columns: 1fr; gap: 10px; padding: 0 10px; }
-        .img-grid img { width: 100%; border-radius: 5px; border: 1px solid var(--gold); filter: grayscale(30%); transition: 0.5s; }
-        .img-grid img:hover { filter: grayscale(0%); }
-
-        /* Услуги */
-        .services { background: var(--white); color: var(--black); padding: 70px 25px; border-radius: 30px 30px 0 0; }
-        .services h2 { text-align: center; text-transform: uppercase; margin-bottom: 40px; letter-spacing: 2px; font-weight: 900; }
-        .item { display: flex; justify-content: space-between; align-items: center; padding: 25px 0; border-bottom: 1px solid #eee; }
-        .item-info b { font-size: 18px; display: block; }
-        .item-info span { font-size: 13px; color: #666; }
-        .price { background: var(--black); color: var(--gold); padding: 8px 15px; border-radius: 20px; font-weight: bold; font-size: 14px; white-space: nowrap; }
-
-        /* Контакты */
-        .footer { padding: 60px 20px; text-align: center; background: linear-gradient(#1a1a1a, #000); border-top: 1px solid var(--gold); }
-        .footer h3 { color: var(--gold); text-transform: uppercase; letter-spacing: 2px; }
-        .footer p { line-height: 1.8; opacity: 0.8; }
-
-        /* WA кнопка */
-        .wa-float { position: fixed; bottom: 30px; right: 25px; background: #25d366; width: 65px; height: 65px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 35px; color: white; text-decoration: none; box-shadow: 0 10px 30px rgba(0,0,0,0.6); z-index: 2000; }
+        .footer { padding: 40px 20px; font-size: 14px; color: #888; border-top: 1px solid #222; margin-top: 40px; }
     </style>
 </head>
 <body>
 
-<nav>
-    <div class="logo"><i class="fas fa-wolf-pack-battalion"></i> ARLAN<span> MOTORWORKS</span></div>
-</nav>
+<nav><div class="logo">ARLAN MOTORWORKS</div></nav>
 
 <section class="hero">
-    <div class="wolf-main"><i class="fas fa-wolf-pack-battalion"></i></div>
-    <h1>PREMIUM <br> AUTO SERVICE</h1>
-    <p>Кызыл-Кия | Сила и Надежность</p>
+    <i class="fas fa-wolf-pack-battalion wolf-icon"></i>
+    
+    <h1>ARLAN AUTO</h1>
+    <span class="subtitle">КЫЗЫЛ-КИЯ | PREMIUM SERVICE</span>
+    
     <div class="btn-group">
-        <a href="https://wa.me/996505511125" class="btn btn-gold">Записаться на сервис</a>
-        <a href="https://www.google.com/maps?q=40.263620,72.104963" class="btn btn-outline" target="_blank">Найти нас на карте</a>
+        <a href="tel:+996505511125" class="btn btn-call">
+            <i class="fas fa-phone-alt"></i> ПОЗВОНИТЬ
+        </a>
+        <a href="https://wa.me/996505511125" class="btn btn-wa">
+            <i class="fab fa-whatsapp"></i> WHATSAPP
+        </a>
     </div>
 </section>
 
-<section class="features">
-    <div class="f-item"><i class="fas fa-certificate"></i><div>Гарантия</div></div>
-    <div class="f-item"><i class="fas fa-user-check"></i><div>Опыт 10+ лет</div></div>
-    <div class="f-item"><i class="fas fa-microchip"></i><div>Диагностика</div></div>
-    <div class="f-item"><i class="fas fa-tools"></i><div>Запчасти</div></div>
-</section>
-
-<section class="gallery">
-    <h2>Наши работы</h2>
-    <div class="img-grid">
-        <img src="https://images.unsplash.com/photo-1632823471565-1ec2c63dbd0c?q=80&w=800" alt="Work 1">
-        <img src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?q=80&w=800" alt="Work 2">
-        <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?q=80&w=800" alt="Work 3">
-    </div>
-</section>
-
-<section class="services">
-    <h2>Услуги & Прайс</h2>
-    <div class="item">
-        <div class="item-info"><b>Компьютерная диагностика</b><span>Полное сканирование всех систем</span></div>
-        <div class="price">500 с</div>
-    </div>
-    <div class="item">
-        <div class="item-info"><b>Замена масла</b><span>В двигателе и трансмиссии</span></div>
-        <div class="price">400 с</div>
-    </div>
-    <div class="item">
-        <div class="item-info"><b>Ремонт ходовой</b><span>Замена деталей, рычагов, стоек</span></div>
-        <div class="price">от 1000 с</div>
-    </div>
-    <div class="item">
-        <div class="item-info"><b>Техническое обслуживание</b><span>Комплексная проверка авто</span></div>
-        <div class="price">Индивидуально</div>
-    </div>
-</section>
-
-<footer class="footer">
-    <h3>МЫ ЖДЕМ ВАС</h3>
-    <p>Кызыл-Кия, ул. Кудайбердиева Умсунай, 3</p>
-    <p>Режим работы: 09:00 - 19:00</p>
-    <p><b>Тел: +996 (505) 51-11-25</b></p>
-    <div style="margin-top: 50px; font-size: 11px; color: #555; letter-spacing: 2px;">© 2026 ARLAN MOTORWORKS. ESTABLISHED FOR POWER.</div>
-</footer>
-
-<a href="https://wa.me/996505511125" class="wa-float" target="_blank">
-    <i class="fab fa-whatsapp"></i>
-</a>
+<div class="footer">
+    <p>ул. Кудайбердиева Умсунай, 3</p>
+    <p>+996 (505) 51-11-25</p>
+</div>
 
 </body>
 </html>
-
-
