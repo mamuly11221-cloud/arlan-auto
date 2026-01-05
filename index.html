@@ -3,57 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
     <title>ARLAN MOTORWORKS</title>
     <style>
         :root { --gold: #c5a059; --black: #0a0a0a; --white: #ffffff; }
         body { font-family: sans-serif; margin: 0; background-color: var(--black); color: var(--white); text-align: center; }
-        
         nav { padding: 20px; border-bottom: 2px solid var(--gold); background: #000; }
         .logo { font-size: 22px; font-weight: bold; color: var(--gold); letter-spacing: 3px; }
-
         .hero { padding: 60px 20px; background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?q=80&w=1000') center/cover; }
-        
-        /* Стиль для волка */
-        .wolf-icon { font-size: 100px; color: var(--gold); margin-bottom: 20px; display: block; }
-        
-        h1 { font-size: 35px; margin: 10px 0; letter-spacing: 2px; }
+        .wolf-icon { font-size: 80px; color: var(--gold); margin-bottom: 20px; display: block; }
+        h1 { font-size: 35px; margin: 10px 0; }
         .subtitle { color: var(--gold); font-weight: bold; margin-bottom: 30px; display: block; }
-
         .btn-group { display: flex; flex-direction: column; gap: 15px; align-items: center; }
         .btn { width: 85%; max-width: 300px; padding: 18px; text-decoration: none; font-weight: bold; border-radius: 8px; display: flex; align-items: center; justify-content: center; gap: 10px; }
         .btn-call { background: var(--gold); color: black; }
         .btn-wa { border: 2px solid #25d366; color: #25d366; }
-
-        .footer { padding: 40px 20px; font-size: 14px; color: #888; border-top: 1px solid #222; margin-top: 40px; }
+        .services { background: white; color: black; padding: 30px 20px; border-radius: 20px 20px 0 0; margin-top: 30px; }
+        .item { display: flex; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid #eee; font-size: 14px; }
+        .price { font-weight: bold; color: #c5a059; }
+        .footer { padding: 40px 20px; font-size: 14px; color: #888; background: #000; }
     </style>
 </head>
 <body>
-
-<nav><div class="logo">ARLAN MOTORWORKS</div></nav>
-
-<section class="hero">
-    <i class="fas fa-wolf-pack-battalion wolf-icon"></i>
-    
-    <h1>ARLAN AUTO</h1>
-    <span class="subtitle">КЫЗЫЛ-КИЯ | PREMIUM SERVICE</span>
-    
-    <div class="btn-group">
-        <a href="tel:+996505511125" class="btn btn-call">
-            <i class="fas fa-phone-alt"></i> ПОЗВОНИТЬ
-        </a>
-        <a href="https://wa.me/996505511125" class="btn btn-wa">
-            <i class="fab fa-whatsapp"></i> WHATSAPP
-        </a>
+    <nav><div class="logo">ARLAN MOTORWORKS</div></nav>
+    <section class="hero">
+        <i class="fas fa-wolf-pack-battalion wolf-icon"></i>
+        <h1>ARLAN AUTO</h1>
+        <span class="subtitle">КЫЗЫЛ-КИЯ | PREMIUM SERVICE</span>
+        <div class="btn-group">
+            <a href="tel:+996505511125" class="btn btn-call"><i class="fas fa-phone-alt"></i> ПОЗВОНИТЬ</a>
+            <a href="https://wa.me/996505511125" class="btn btn-wa"><i class="fab fa-whatsapp"></i> WHATSAPP</a>
+        </div>
+    </section>
+    <section class="services">
+        <div class="item"><span>Диагностика</span><span class="price">500 с</span></div>
+        <div class="item"><span>Замена масла</span><span class="price">400 с</span></div>
+        <div class="item"><span>Ходовая часть</span><span class="price">от 1000 с</span></div>
+    </section>
+    <div class="footer">
+        <p>ул. Кудайбердиева Умсунай, 3</p>
+        <p>+996 (505) 51-11-25</p>
     </div>
-</section>
-
-<div class="footer">
-    <p>ул. Кудайбердиева Умсунай, 3</p>
-    <p>+996 (505) 51-11-25</p>
-</div>
-
 </body>
 </html>
