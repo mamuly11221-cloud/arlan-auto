@@ -4,278 +4,280 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ARLAN MOTORWORKS — Премиум автосервис в Кызыл-Кия</title>
-  <meta name="description" content="Премиум автосервис ARLAN MOTORWORKS в Кызыл-Кия. Диагностика, ремонт ходовой, замена масла, детейлинг.">
   
+  <meta name="description" content="Премиум автосервис ARLAN MOTORWORKS в Кызыл-Кия. Диагностика, ремонт ходовой, детейлинг.">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
   <style>
     :root {
       --gold: #d4af37; --gold-hover: #b5952f; --bg: #050505; --surface: rgba(30,30,30,0.6);
-      --surface-hover: rgba(50,50,50,0.8); --text: #ffffff; --muted: #a0a0a0;
-      --accent: #25D366; --call: #3498db; --blur: 12px;
+      --text: #ffffff; --muted: #a0a0a0; --accent: #25D366; --call: #3498db; --blur: 15px;
     }
+
     * { box-sizing: border-box; margin:0; padding:0; }
-    body { font-family: system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; scroll-behavior: smooth; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; scroll-behavior: smooth; overflow-x: hidden; }
     .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
     
     /* Animations */
-    .fade-in { opacity:0; transform:translateY(30px); transition:all 0.8s ease-out; }
+    .fade-in { opacity:0; transform:translateY(20px); transition:all 0.6s ease-out; }
     .fade-in.visible { opacity:1; transform:translateY(0); }
+
+    /* Sticky Nav */
+    .top-nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: rgba(5, 5, 5, 0.7); backdrop-filter: blur(var(--blur));
+      border-bottom: 1px solid rgba(212, 175, 55, 0.15); transition: 0.3s;
+    }
+    .nav-flex { display: flex; justify-content: space-between; align-items: center; height: 70px; }
+    .logo { font-weight: 900; color: var(--gold); letter-spacing: 2px; font-size: 20px; text-decoration: none; }
+    .logo span { color: #fff; font-weight: 300; }
+    
+    .nav-right { display: flex; align-items: center; gap: 15px; }
+    .lang-switch { display: flex; gap: 5px; background: #111; padding: 4px; border-radius: 20px; border: 1px solid #333; }
+    .lang-btn { 
+        padding: 4px 10px; border-radius: 15px; cursor: pointer; font-size: 12px; font-weight: bold; transition: 0.3s; color: #666;
+    }
+    .lang-btn.active { background: var(--gold); color: #000; }
 
     /* Hero */
     .hero {
-      min-height: 90vh; background: url('https://img.freepik.com/premium-photo/black-car-stands-brightly-lit-auto-repair-shop-while-technician-works-background-highlighting-busy-evening-atmosphere-generative-ai_262708-50900.jpg') center/cover no-repeat;
+      min-height: 95vh; background: url('https://img.freepik.com/premium-photo/black-car-stands-brightly-lit-auto-repair-shop-while-technician-works-background-highlighting-busy-evening-atmosphere-generative-ai_262708-50900.jpg') center/cover no-repeat;
       position: relative; display: flex; align-items: center; justify-content: center; text-align: center;
     }
-    .hero::before { content:""; position:absolute; inset:0; background: linear-gradient(180deg, rgba(0,0,0,0.75), rgba(0,0,0,0.6), var(--bg)); }
-    .hero-content { position:relative; z-index:2; padding:20px; max-width:900px; }
-    .brand-big { font-size: clamp(40px,9vw,80px); font-weight:900; color:var(--gold); letter-spacing:4px; text-transform:uppercase; margin-bottom:16px; text-shadow:0 6px 25px rgba(212,175,85,0.5); }
-    .hero-title { font-size: clamp(18px,4.5vw,32px); margin-bottom:32px; }
-
+    .hero::before { content:""; position:absolute; inset:0; background: linear-gradient(180deg, rgba(0,0,0,0.8), rgba(0,0,0,0.5), var(--bg)); }
+    .hero-content { position:relative; z-index:2; padding:20px; }
+    .brand-big { font-size: clamp(35px, 8vw, 75px); font-weight: 900; color: var(--gold); letter-spacing: 5px; text-transform: uppercase; margin-bottom: 10px; }
+    
     /* Buttons */
-    .btn { display:inline-block; padding:16px 36px; border-radius:50px; font-weight:700; text-transform:uppercase; letter-spacing:1px; transition:all 0.3s; cursor:pointer; text-decoration:none; border:none; }
-    .btn-gold { background:var(--gold); color:#000; box-shadow:0 6px 20px rgba(212,175,85,0.5); }
-    .btn-gold:hover { background:var(--gold-hover); transform:translateY(-4px); }
-    .btn-outline { border:2px solid var(--gold); color:var(--gold); margin-left:10px; background: transparent; }
-    .btn-outline:hover { background:rgba(212,175,85,0.15); }
+    .btn { display:inline-block; padding:16px 32px; border-radius:50px; font-weight:700; text-transform:uppercase; letter-spacing:1px; transition:0.3s; cursor:pointer; text-decoration:none; border:none; text-align: center; }
+    .btn-gold { background:var(--gold); color:#000; box-shadow:0 10px 20px rgba(212,175,85,0.3); }
+    .btn-gold:hover { transform:translateY(-3px); background: var(--gold-hover); }
+    .btn-outline { border:2px solid var(--gold); color:var(--gold); background: transparent; }
 
-    /* Grids & Cards */
-    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:24px; margin:40px 0; }
-    .card {
-      background:var(--surface); backdrop-filter:blur(var(--blur)); border:1px solid rgba(255,255,255,0.08);
-      border-radius:16px; padding:28px; text-align:center; transition:all 0.4s;
-    }
-    .card:hover { transform:translateY(-10px); border-color:var(--gold); }
+    /* Sections */
+    .section-title { text-align:center; font-size:clamp(22px, 5vw, 32px); color:var(--gold); margin:80px 0 40px; text-transform:uppercase; letter-spacing:3px; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px; margin:40px 0; }
+    .card { background: #0f0f0f; border: 1px solid #1f1f1f; border-radius:16px; padding:30px; transition:0.3s; position: relative; overflow: hidden; }
+    .card:hover { border-color: var(--gold); transform: translateY(-5px); }
 
-    /* Forms & Inputs */
-    input, select, textarea {
-      width: 100%; padding: 14px; margin-bottom: 12px; background: #151515; border: 1px solid #333; color: #fff; border-radius: 8px; font-size: 16px;
-    }
-
-    /* Calculator Box */
-    .calc-box { background: #111; border: 1px dashed var(--gold); border-radius: 20px; padding: 30px; margin: 40px 0; }
-    .price-display { font-size: 36px; color: var(--gold); font-weight: 800; margin: 10px 0; }
+    /* Quiz Box */
+    .quiz-box { background: linear-gradient(145deg, #0a0a0a, #151515); padding: 40px; border-radius: 24px; border: 1px solid var(--gold); }
 
     /* Gallery */
-    .gallery-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:16px; }
-    .gallery-img { width:100%; height:220px; object-fit:cover; border-radius:12px; cursor:pointer; transition: 0.3s; filter: brightness(0.8); }
-    .gallery-img:hover { filter: brightness(1.1); transform: scale(1.03); }
+    .gallery-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:12px; }
+    .gallery-img { width:100%; height:200px; object-fit:cover; border-radius:10px; cursor:pointer; filter: grayscale(0.5); transition: 0.4s; }
+    .gallery-img:hover { filter: grayscale(0); transform: scale(1.02); }
+
+    /* Mobile bar */
+    .mobile-bar { position:fixed; bottom:0; left:0; right:0; height:65px; background:#000; display:flex; z-index:999; border-top: 1px solid #222; }
+    .mob-btn { flex:1; display:flex; flex-direction: column; align-items:center; justify-content:center; text-decoration:none; font-size: 11px; color: #fff; }
+    .mob-btn.wa { background: var(--accent); color: #000; font-weight: bold; font-size: 14px; }
 
     /* Modal */
-    .modal { display:none; position:fixed; z-index:10000; inset:0; background:rgba(0,0,0,0.9); align-items:center; justify-content:center; padding: 20px; }
-    .modal img { max-width:100%; max-height:90vh; border-radius:8px; border:2px solid var(--gold); }
-    .modal-close { position:absolute; top:20px; right:30px; font-size:40px; color:#fff; cursor:pointer; }
+    .modal { display:none; position:fixed; z-index:10001; inset:0; background:rgba(0,0,0,0.95); align-items:center; justify-content:center; }
+    .modal img { max-width:95%; max-height:85vh; border: 2px solid var(--gold); border-radius: 5px; }
 
-    /* FAQ */
-    details { background: var(--surface); padding: 15px; border-radius: 8px; margin-bottom: 10px; cursor: pointer; border: 1px solid transparent; }
-    details:hover { border-color: var(--gold); }
-    summary { font-weight: bold; color: var(--gold); list-style: none; }
+    /* Hidden elements for KG */
+    [data-lang="kg"] { display: none; }
+    body.lang-kg [data-lang="ru"] { display: none; }
+    body.lang-kg [data-lang="kg"] { display: inline-block; }
 
-    /* Mobile bar & Back to top */
-    .mobile-bar { position:fixed; bottom:0; left:0; right:0; height:68px; background:#111; display:flex; z-index:999; }
-    .mob-btn { flex:1; display:flex; align-items:center; justify-content:center; font-weight:700; color:#fff; text-decoration:none; }
-    .back-to-top { position:fixed; bottom:85px; right:20px; width:45px; height:45px; background:var(--gold); color:#000; border-radius:50%; display:none; align-items:center; justify-content:center; text-decoration:none; z-index:998; font-weight: bold; }
-
-    .section-title { text-align:center; font-size:clamp(24px,5vw,36px); color:var(--gold); margin:80px 0 40px; text-transform:uppercase; letter-spacing:2px; }
-    .section-title::after { content:""; display:block; width:80px; height:4px; background:var(--gold); margin:15px auto; }
-
-    @media (max-width:600px) {
-      .hero-content { padding-top:60px; }
-      .btn { width:100%; margin:8px 0 !important; }
-      .grid { grid-template-columns: 1fr; }
+    @media (max-width: 768px) {
+        .nav-links { display: none; }
+        .hero-content { padding-top: 100px; }
+        .grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
-<body>
+<body class="lang-ru">
+
+  <nav class="top-nav">
+    <div class="container nav-flex">
+      <a href="#" class="logo">ARLAN<span> MOTORWORKS</span></a>
+      <div class="nav-right">
+        <div class="lang-switch">
+          <div class="lang-btn active" onclick="setLang('ru')">RU</div>
+          <div class="lang-btn" onclick="setLang('kg')">KG</div>
+        </div>
+        <a href="#contact" class="btn-gold" style="padding: 8px 15px; border-radius: 5px; font-size: 12px; text-decoration: none;">
+            <span data-lang="ru">ЗАПИСЬ</span>
+            <span data-lang="kg">ЖАЗЫЛУУ</span>
+        </a>
+      </div>
+    </div>
+  </nav>
 
   <header class="hero">
     <div class="hero-content fade-in">
       <div class="brand-big">ARLAN MOTORWORKS</div>
-      <h1 class="hero-title">Премиум автосервис в Кызыл-Кия<br>Диагностика бесплатно при ремонте от 3000 сом</h1>
-      <div>
-        <a href="#quiz" class="btn btn-gold">Рассчитать стоимость</a>
-        <a href="#gallery" class="btn btn-outline">Наши работы</a>
+      <h1 style="font-size: 20px; margin-bottom: 30px; letter-spacing: 1px;">
+        <span data-lang="ru">Премиум сервис для вашего авто в Кызыл-Кия</span>
+        <span data-lang="kg">Кызыл-Кыядагы унааңыз үчүн премиум сервис</span>
+      </h1>
+      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px;">
+        <a href="#quiz" class="btn btn-gold">
+            <span data-lang="ru">Узнать цену</span>
+            <span data-lang="kg">Баасын билүү</span>
+        </a>
+        <a href="#gallery" class="btn btn-outline">
+            <span data-lang="ru">Наши работы</span>
+            <span data-lang="kg">Биздин иштер</span>
+        </a>
       </div>
     </div>
   </header>
 
   <div class="container">
     <div class="grid fade-in">
-      <div class="card"><h3>⏱️ Быстро</h3><p>Диагностика за 15 минут в день обращения</p></div>
-      <div class="card"><h3>🛡️ Гарантия</h3><p>От 6 до 12 месяцев на все виды работ</p></div>
-      <div class="card"><h3>✨ Чистота</h3><p>Используем защитные чехлы для сидений и руля</p></div>
+      <div class="card">
+        <h3 data-lang="ru">⏱️ Быстро</h3><h3 data-lang="kg">⏱️ Тез</h3>
+        <p data-lang="ru">Диагностика за 15 мин</p><p data-lang="kg">Диагностика 15 мүнөттө</p>
+      </div>
+      <div class="card">
+        <h3 data-lang="ru">🛡️ Гарантия</h3><h3 data-lang="kg">🛡️ Кепилдик</h3>
+        <p data-lang="ru">6-12 месяцев на работу</p><p data-lang="kg">Иш үчүн 6-12 ай кепилдик</p>
+      </div>
+      <div class="card">
+        <h3 data-lang="ru">✨ Премиум</h3><h3 data-lang="kg">✨ Премиум</h3>
+        <p data-lang="ru">Чехлы на руль и сиденья</p><p data-lang="kg">Рулга жана отургучтарга каптар</p>
+      </div>
     </div>
+
+    <section id="quiz" class="quiz-box fade-in">
+      <div id="q-step1" style="text-align: center;">
+        <h2 data-lang="ru">Что нужно проверить?</h2><h2 data-lang="kg">Эмнени текшерүү керек?</h2>
+        <div class="grid" style="margin-top: 20px;">
+            <button class="btn btn-outline" onclick="nextQ('Двигатель / Мотор')">Двигатель</button>
+            <button class="btn btn-outline" onclick="nextQ('Ходовая / Пневмо')">Ходовая</button>
+            <button class="btn btn-outline" onclick="nextQ('ТО / Масло')">ТО / Масло</button>
+        </div>
+      </div>
+      <div id="q-step2" style="display: none; text-align: center;">
+        <h2 data-lang="ru">Марка вашего авто?</h2><h2 data-lang="kg">Унааңыздын маркасы?</h2>
+        <input type="text" id="car-name" placeholder="BMW, Lexus, Toyota..." style="width: 100%; max-width: 400px; padding: 15px; margin: 20px 0; background: #000; border: 1px solid #333; color: #fff; border-radius: 10px;">
+        <button class="btn btn-gold" onclick="finishQ()">
+            <span data-lang="ru">Получить расчет в WhatsApp</span>
+            <span data-lang="kg">WhatsApp аркылуу баасын алуу</span>
+        </button>
+      </div>
+    </section>
+
+    <h2 class="section-title fade-in">
+        <span data-lang="ru">Сейчас в работе</span>
+        <span data-lang="kg">Учурда иште</span>
+    </h2>
+    <div style="display: flex; gap: 15px; overflow-x: auto; padding-bottom: 20px;" class="fade-in">
+      <div style="min-width: 280px; background: #111; padding: 20px; border-radius: 15px; border-left: 4px solid var(--accent);">
+        <small style="color: var(--accent);">● IN WORK</small>
+        <h4>Range Rover Vogue</h4>
+        <p style="font-size: 13px; color: #666;" data-lang="ru">Ремонт пневмоподвески</p>
+        <p style="font-size: 13px; color: #666;" data-lang="kg">Пневмо асмасын оңдоо</p>
+      </div>
+      <div style="min-width: 280px; background: #111; padding: 20px; border-radius: 15px; border-left: 4px solid var(--gold);">
+        <small style="color: var(--gold);">● FINISHED</small>
+        <h4>Toyota Land Cruiser 300</h4>
+        <p style="font-size: 13px; color: #666;" data-lang="ru">Детейлинг и керамика</p>
+        <p style="font-size: 13px; color: #666;" data-lang="kg">Детейлинг жана керамика</p>
+      </div>
+    </div>
+
+    <section id="gallery">
+        <h2 class="section-title fade-in">
+            <span data-lang="ru">Галерея работ</span>
+            <span data-lang="kg">Иштердин галереясы</span>
+        </h2>
+        <div class="gallery-grid fade-in">
+            <img src="https://img.freepik.com/premium-photo/black-car-stands-brightly-lit-auto-repair-shop-while-technician-works-background-highlighting-busy-evening-atmosphere-generative-ai_262708-50900.jpg" class="gallery-img">
+            <img src="https://thumbs.dreamstime.com/z/matte-black-lamborghini-urus-premium-workshop-luxury-cars-stands-lit-sharp-taillights-visible-mercedes-amg-new-range-418022131.jpg" class="gallery-img">
+            <img src="https://thumbs.dreamstime.com/b/view-car-raised-lift-car-repair-shop-close-up-bottom-view-vehicle-raised-lift-car-repair-shop-155436634.jpg" class="gallery-img">
+            <img src="https://img.freepik.com/premium-photo/two-mechanic-was-checking-car-suspension-vehicle-raised-lift-maintenance-station-car-service-station-with-two-men-repair-car-mechanic-working-automotive-service-center_35150-2949.jpg" class="gallery-img">
+        </div>
+    </section>
+
+    <section id="contact" style="margin: 80px 0 120px;">
+        <h2 class="section-title fade-in">
+            <span data-lang="ru">Записаться на сервис</span>
+            <span data-lang="kg">Сервиске жазылуу</span>
+        </h2>
+        <div style="background: #0a0a0a; padding: 30px; border-radius: 20px; border: 1px solid #1a1a1a;" class="fade-in">
+            <form id="contact-form">
+                <input type="text" id="client-name" placeholder="Ваше имя / Сиздин атыңыз" required style="width:100%; padding:15px; margin-bottom:15px; background:#000; border:1px solid #333; color:#fff; border-radius:10px;">
+                <input type="tel" id="client-phone" placeholder="+996 ___ ___ ___" required style="width:100%; padding:15px; margin-bottom:15px; background:#000; border:1px solid #333; color:#fff; border-radius:10px;">
+                <button type="submit" class="btn btn-gold" style="width: 100%;">
+                    <span data-lang="ru">Отправить в WhatsApp</span>
+                    <span data-lang="kg">WhatsApp аркылуу жөнөтүү</span>
+                </button>
+            </form>
+        </div>
+    </section>
   </div>
 
-  <section id="quiz" class="container fade-in">
-    <h2 class="section-title">Онлайн оценка</h2>
-    <div style="background: linear-gradient(45deg, #111, #1a1a1a); padding: 40px; border-radius: 20px; border: 1px solid var(--gold); text-align: center;">
-      <div id="quiz-container">
-        <div id="step1">
-          <h3 style="margin-bottom:20px;">Что нужно отремонтировать?</h3>
-          <button class="btn btn-outline" onclick="nextStep(2, 'Двигатель')">Двигатель</button>
-          <button class="btn btn-outline" onclick="nextStep(2, 'Ходовая')">Ходовая</button>
-          <button class="btn btn-outline" onclick="nextStep(2, 'Детейлинг')">Детейлинг</button>
-        </div>
-        <div id="step2" style="display:none;">
-          <h3 style="margin-bottom:20px;">Марка и год авто?</h3>
-          <input type="text" id="quiz-car" placeholder="Например: Toyota Camry 2018" style="max-width:400px; margin: 0 auto 20px; display:block;">
-          <button class="btn btn-gold" onclick="nextStep(3)">Далее</button>
-        </div>
-        <div id="step3" style="display:none;">
-          <h3 style="margin-bottom:20px;">Готово! Получите расчет и подарок</h3>
-          <p style="margin-bottom:20px;">Мы закрепили за вашим номером скидку 500 сом</p>
-          <button class="btn btn-gold" onclick="finishQuiz()">Узнать цену в WhatsApp</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="container fade-in">
-    <h2 class="section-title">Сейчас в боксах</h2>
-    <div style="display: flex; gap: 15px; overflow-x: auto; padding-bottom: 20px;">
-      <div style="min-width: 250px; background: #111; padding: 20px; border-radius: 12px; border-left: 4px solid var(--accent);">
-        <span style="color: var(--accent); font-size: 12px;">● В РАБОТЕ</span>
-        <h4 style="margin: 10px 0;">BMW X5 (G05)</h4>
-        <p style="font-size: 14px; color: var(--muted);">Замена масла и фильтров</p>
-      </div>
-      <div style="min-width: 250px; background: #111; padding: 20px; border-radius: 12px; border-left: 4px solid var(--gold);">
-        <span style="color: var(--gold); font-size: 12px;">● ГОТОВ К ВЫДАЧЕ</span>
-        <h4 style="margin: 10px 0;">Lexus RX450h</h4>
-        <p style="font-size: 14px; color: var(--muted);">Полировка и керамика</p>
-      </div>
-      <div style="min-width: 250px; background: #111; padding: 20px; border-radius: 12px; border-left: 4px solid var(--accent);">
-        <span style="color: var(--accent); font-size: 12px;">● В РАБОТЕ</span>
-        <h4 style="margin: 10px 0;">Range Rover</h4>
-        <p style="font-size: 14px; color: var(--muted);">Диагностика пневмоподвески</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="gallery" class="container fade-in">
-    <h2 class="section-title">Примеры работ</h2>
-    <div class="gallery-grid">
-      <img src="https://img.freepik.com/premium-photo/black-car-stands-brightly-lit-auto-repair-shop-while-technician-works-background-highlighting-busy-evening-atmosphere-generative-ai_262708-50900.jpg" class="gallery-img" alt="Работа 1">
-      <img src="https://thumbs.dreamstime.com/z/matte-black-lamborghini-urus-premium-workshop-luxury-cars-stands-lit-sharp-taillights-visible-mercedes-amg-new-range-418022131.jpg" class="gallery-img" alt="Работа 2">
-      <img src="https://thumbs.dreamstime.com/b/view-car-raised-lift-car-repair-shop-close-up-bottom-view-vehicle-raised-lift-car-repair-shop-155436634.jpg" class="gallery-img" alt="Работа 3">
-      <img src="https://img.freepik.com/premium-photo/two-mechanic-was-checking-car-suspension-vehicle-raised-lift-maintenance-station-car-service-station-with-two-men-repair-car-mechanic-working-automotive-service-center_35150-2949.jpg" class="gallery-img" alt="Работа 4">
-    </div>
-  </section>
-
-  <section class="container fade-in">
-    <h2 class="section-title">Вопросы</h2>
-    <div style="max-width: 800px; margin: 0 auto;">
-      <details>
-        <summary>Можно ли привезти свои запчасти?</summary>
-        <p style="padding-top:10px; color: var(--muted);">Да, но в этом случае гарантия распространяется только на выполненные работы, а не на саму деталь.</p>
-      </details>
-      <details>
-        <summary>Сколько времени занимает замена масла?</summary>
-        <p style="padding-top:10px; color: var(--muted);">Обычно процедура занимает от 30 до 50 минут вместе с проверкой уровня технических жидкостей.</p>
-      </details>
-    </div>
-  </section>
-
-  <section id="contact" class="container fade-in" style="margin-bottom: 100px;">
-    <h2 class="section-title">Запись на сервис</h2>
-    <div style="background: #080808; padding: 40px; border-radius: 20px;">
-        <p id="slots-info" style="text-align:center; color: var(--accent); margin-bottom: 20px; font-weight: bold;"></p>
-        <form id="main-form">
-          <input type="text" id="name" placeholder="Ваше имя" required>
-          <input type="tel" id="phone" placeholder="+996 ___ ___ ___" required>
-          <select id="service-select">
-            <option value="">Выберите услугу...</option>
-            <option>Замена масла</option>
-            <option>Диагностика</option>
-            <option>Ходовая часть</option>
-            <option>Детейлинг</option>
-          </select>
-          <textarea id="message" placeholder="Марка авто и описание проблемы..." rows="3"></textarea>
-          <button type="submit" class="btn btn-gold" style="width:100%;">Записаться через WhatsApp</button>
-        </form>
-    </div>
-  </section>
-
-  <footer style="text-align:center; padding: 40px; color: #555; background: #000;">
-    <p>© <span id="year"></span> ARLAN MOTORWORKS</p>
+  <footer style="text-align: center; padding: 50px 20px; border-top: 1px solid #111; color: #444;">
+    <p style="color: var(--gold); font-weight: bold; margin-bottom: 10px;">ARLAN MOTORWORKS</p>
     <p>Кызыл-Кия, ул. Кудайбердиева Умсунай, 3</p>
+    <p>+996 505 511 125</p>
   </footer>
 
   <div class="mobile-bar">
-    <a href="https://wa.me/996505511125" class="mob-btn" style="background: var(--accent);">WhatsApp</a>
-    <a href="tel:+996505511125" class="mob-btn" style="background: var(--call);">Позвонить</a>
+    <a href="tel:+996505511125" class="mob-btn">📞 <span data-lang="ru">Позвонить</span><span data-lang="kg">Чалуу</span></a>
+    <a href="https://wa.me/996505511125" class="mob-btn wa">💬 WhatsApp</a>
   </div>
 
-  <a href="#" class="back-to-top" id="toTop">↑</a>
-
-  <div id="imgModal" class="modal">
-    <span class="modal-close">×</span>
-    <img id="modalImg" src="">
-  </div>
+  <div id="imgModal" class="modal"><span style="position:absolute; top:20px; right:30px; color:#fff; font-size:40px; cursor:pointer;" onclick="this.parentElement.style.display='none'">×</span><img id="modalImg"></div>
 
   <script>
-    // Текущий год
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Психология дефицита
-    const slots = Math.floor(Math.random() * 3) + 2;
-    document.getElementById('slots-info').textContent = `● Свободных окон на сегодня: ${slots}`;
-
-    // Анимация появления
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('visible'); });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-    // Квиз логика
-    let quizData = { service: '', car: '' };
-    function nextStep(step, val) {
-      if(val) quizData.service = val;
-      document.getElementById('step1').style.display = 'none';
-      document.getElementById('step2').style.display = 'none';
-      document.getElementById('step3').style.display = 'none';
-      document.getElementById('step' + step).style.display = 'block';
-    }
-    function finishQuiz() {
-      quizData.car = document.getElementById('quiz-car').value || 'Не указано';
-      const text = `Квиз: Нужен расчет стоимости\nУслуга: ${quizData.service}\nАвто: ${quizData.car}`;
-      window.location.href = `https://wa.me/996505511125?text=${encodeURIComponent(text)}`;
+    // Language Logic
+    function setLang(lang) {
+      document.body.className = 'lang-' + lang;
+      document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+      localStorage.setItem('preferredLang', lang);
     }
 
-    // Модальное окно галереи
-    const modal = document.getElementById('imgModal');
-    const modalImg = document.getElementById('modalImg');
+    // Quiz Logic
+    let selectedService = "";
+    function nextQ(service) {
+        selectedService = service;
+        document.getElementById('q-step1').style.display = 'none';
+        document.getElementById('q-step2').style.display = 'block';
+    }
+    function finishQ() {
+        const car = document.getElementById('car-name').value;
+        const text = `Квиз с сайта ARLAN:\nУслуга: ${selectedService}\nАвто: ${car}`;
+        window.location.href = `https://wa.me/996505511125?text=${encodeURIComponent(text)}`;
+    }
+
+    // Modal Logic
     document.querySelectorAll('.gallery-img').forEach(img => {
-      img.onclick = () => { modal.style.display = "flex"; modalImg.src = img.src; }
+      img.onclick = function() {
+        document.getElementById('imgModal').style.display = 'flex';
+        document.getElementById('modalImg').src = this.src;
+      }
     });
-    document.querySelector('.modal-close').onclick = () => modal.style.display = "none";
 
-    // Кнопка Наверх
-    const toTop = document.getElementById('toTop');
-    window.onscroll = () => {
-      toTop.style.display = window.scrollY > 600 ? "flex" : "none";
+    // Intersection Observer
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+    }, {threshold: 0.1});
+    document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+
+    // Phone Mask
+    document.getElementById('client-phone').oninput = function(e) {
+        let v = e.target.value.replace(/\D/g,'');
+        if(v.startsWith('996')) v = v.substring(3);
+        v = v.substring(0,9);
+        e.target.value = v ? '+996 ' + v.match(/.{1,3}/g)?.join(' ') : '+996';
     };
 
-    // Маска телефона +996
-    document.getElementById('phone').addEventListener('input', e => {
-      let v = e.target.value.replace(/\D/g,'');
-      if(v.startsWith('996')) v = v.substring(3);
-      v = v.substring(0,9);
-      e.target.value = v ? '+996 ' + v.match(/.{1,3}/g)?.join(' ') : '+996';
-    });
-
-    // Отправка основной формы
-    document.getElementById('main-form').onsubmit = (e) => {
-      e.preventDefault();
-      const n = document.getElementById('name').value;
-      const p = document.getElementById('phone').value;
-      const s = document.getElementById('service-select').value;
-      const m = document.getElementById('message').value;
-      const text = `Запись с сайта:\nИмя: ${n}\nТел: ${p}\nУслуга: ${s}\nИнфо: ${m}`;
-      window.location.href = `https://wa.me/996505511125?text=${encodeURIComponent(text)}`;
+    // Form Submit
+    document.getElementById('contact-form').onsubmit = function(e) {
+        e.preventDefault();
+        const n = document.getElementById('client-name').value;
+        const p = document.getElementById('client-phone').value;
+        const text = `Заявка на сервис:\nИмя: ${n}\nТел: ${p}`;
+        window.location.href = `https://wa.me/996505511125?text=${encodeURIComponent(text)}`;
     };
   </script>
-
 </body>
 </html>
