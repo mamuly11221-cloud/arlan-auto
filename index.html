@@ -3,506 +3,530 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ARLAN MOTORWORKS — Премиум автосервис в Кызыл-Кия</title>
+  <title>ARLAN MOTORWORKS — Автосервис в Кызыл-Кия</title>
   
-  <meta name="description" content="Премиум автосервис ARLAN MOTORWORKS в Кызыл-Кия. Диагностика, ремонт ходовой, детейлинг.">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
   <style>
-    :root {
-      --gold: #d4af37; --gold-hover: #b5952f; --bg: #050505; --surface: rgba(30,30,30,0.6);
-      --text: #ffffff; --muted: #a0a0a0; --accent: #25D366; --call: #3498db; --blur: 15px;
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
     }
-
-    * { box-sizing: border-box; margin:0; padding:0; }
+    
     body { 
-      font-family: 'Segoe UI', system-ui, sans-serif; 
-      background: var(--bg); 
-      color: var(--text); 
-      line-height: 1.6; 
-      scroll-behavior: smooth; 
-      overflow-x: hidden; 
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #000; 
+      color: white; 
+      line-height: 1.6;
+      padding-bottom: 70px; /* Для мобильной панели */
     }
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
     
-    /* FIXED: Убрал начальную невидимость */
-    .fade-in { 
-      opacity: 1 !important; /* Принудительно делаем видимым */
-      transform: translateY(0) !important;
-      transition: all 0.6s ease-out; 
+    /* Навигация */
+    header {
+      background: rgba(0,0,0,0.95);
+      padding: 15px 20px;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #333;
     }
-
-    /* Sticky Nav */
-    .top-nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-      background: rgba(5, 5, 5, 0.95); /* Более тёмный фон для лучшей читаемости */
-      backdrop-filter: blur(var(--blur));
-      border-bottom: 1px solid rgba(212, 175, 55, 0.25); 
-    }
-    .nav-flex { display: flex; justify-content: space-between; align-items: center; height: 70px; }
-    .logo { font-weight: 900; color: var(--gold); letter-spacing: 2px; font-size: 20px; text-decoration: none; }
-    .logo span { color: #fff; font-weight: 300; }
     
-    .nav-right { display: flex; align-items: center; gap: 15px; }
-    .lang-switch { display: flex; gap: 5px; background: #111; padding: 4px; border-radius: 20px; border: 1px solid #333; }
-    .lang-btn { 
-        padding: 4px 10px; border-radius: 15px; cursor: pointer; font-size: 12px; font-weight: bold; 
-        transition: 0.3s; color: #666;
+    .logo {
+      color: #d4af37;
+      font-size: 20px;
+      font-weight: 900;
+      text-decoration: none;
+      letter-spacing: 1px;
     }
-    .lang-btn.active { background: var(--gold); color: #000; }
-
-    /* Hero */
+    
+    .logo span {
+      color: white;
+      font-weight: 300;
+    }
+    
+    .nav-buttons {
+      display: flex;
+      gap: 10px;
+    }
+    
+    .nav-btn {
+      padding: 8px 15px;
+      background: #d4af37;
+      color: #000;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+      font-size: 14px;
+    }
+    
+    /* Главный экран */
     .hero {
-      min-height: 95vh; 
+      min-height: 100vh;
       background: 
-        linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.6)), /* Затемнение фона */
-        url('https://images.unsplash.com/photo-1549399542-7e3f8b79c341?q=80&w=1974&auto=format&fit=crop') center/cover no-repeat;
-      position: relative; 
-      display: flex; 
-      align-items: center; 
-      justify-content: center; 
+        linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.5)),
+        url('https://images.unsplash.com/photo-1549399542-7e3f8b79c341?q=80&w=1974&auto=format&fit=crop') center/cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       text-align: center;
-    }
-    .hero-content { position:relative; z-index:2; padding:20px; }
-    .brand-big { 
-      font-size: clamp(35px, 8vw, 75px); 
-      font-weight: 900; 
-      color: var(--gold); 
-      letter-spacing: 5px; 
-      text-transform: uppercase; 
-      margin-bottom: 10px;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.8); /* Добавил тень для лучшей читаемости */
+      padding: 80px 20px 20px;
     }
     
-    /* Buttons */
-    .btn { 
-      display:inline-block; 
-      padding:16px 32px; 
-      border-radius:50px; 
-      font-weight:700; 
-      text-transform:uppercase; 
-      letter-spacing:1px; 
-      transition:0.3s; 
-      cursor:pointer; 
-      text-decoration:none; 
-      border:none; 
-      text-align: center;
-      margin: 5px;
+    .hero-content {
+      max-width: 800px;
     }
-    .btn-gold { 
-      background:var(--gold); 
-      color:#000; 
-      box-shadow:0 5px 15px rgba(212,175,85,0.3);
+    
+    .hero h1 {
+      font-size: 3.5rem;
+      color: #d4af37;
+      margin-bottom: 10px;
+      font-weight: 900;
     }
-    .btn-gold:hover { 
-      transform:translateY(-3px); 
-      background: var(--gold-hover);
-      box-shadow:0 8px 20px rgba(212,175,85,0.4);
+    
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      color: #ccc;
     }
-    .btn-outline { 
-      border:2px solid var(--gold); 
-      color:var(--gold); 
-      background: transparent; 
+    
+    .highlight {
+      background: rgba(212, 175, 55, 0.1);
+      padding: 20px;
+      border-radius: 10px;
+      border: 1px solid #d4af37;
+      margin: 30px 0;
     }
+    
+    /* Кнопки */
+    .btn {
+      display: inline-block;
+      padding: 15px 30px;
+      margin: 10px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 16px;
+      transition: all 0.3s;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .btn-gold {
+      background: #d4af37;
+      color: #000;
+    }
+    
+    .btn-gold:hover {
+      background: #b5952f;
+      transform: translateY(-2px);
+    }
+    
+    .btn-outline {
+      background: transparent;
+      color: #d4af37;
+      border: 2px solid #d4af37;
+    }
+    
     .btn-outline:hover {
       background: rgba(212, 175, 55, 0.1);
     }
-
-    /* Sections */
-    .section-title { 
-      text-align:center; 
-      font-size:clamp(22px, 5vw, 32px); 
-      color:var(--gold); 
-      margin:80px 0 40px; 
-      text-transform:uppercase; 
-      letter-spacing:3px;
+    
+    /* Разделы */
+    .section {
+      padding: 60px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
     }
-    .grid { 
-      display:grid; 
-      grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); 
-      gap:20px; 
-      margin:40px 0;
+    
+    .section-title {
+      text-align: center;
+      color: #d4af37;
+      font-size: 2rem;
+      margin-bottom: 40px;
+      font-weight: 700;
     }
-    .card { 
-      background: #0f0f0f; 
-      border: 1px solid #1f1f1f; 
-      border-radius:16px; 
-      padding:30px; 
-      transition:0.3s;
-    }
-    .card:hover { 
-      border-color: var(--gold); 
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-    }
-
-    /* Quiz Box */
-    .quiz-box { 
-      background: linear-gradient(145deg, #0a0a0a, #151515); 
-      padding: 40px; 
-      border-radius: 24px; 
-      border: 1px solid var(--gold);
-      margin: 60px 0;
-    }
-
-    /* Gallery */
-    .gallery-grid { 
-      display:grid; 
-      grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); 
-      gap:12px; 
-      margin-bottom: 60px;
-    }
-    .gallery-img { 
-      width:100%; 
-      height:200px; 
-      object-fit:cover; 
-      border-radius:10px; 
-      cursor:pointer; 
-      transition: 0.4s;
-      border: 1px solid #222;
-    }
-    .gallery-img:hover { 
-      transform: scale(1.03);
-      box-shadow: 0 5px 15px rgba(212,175,55,0.2);
-    }
-
-    /* Mobile bar */
-    .mobile-bar { 
-      position:fixed; 
-      bottom:0; 
-      left:0; 
-      right:0; 
-      height:65px; 
-      background:#000; 
-      display:flex; 
-      z-index:999; 
-      border-top: 1px solid #222;
-    }
-    .mob-btn { 
-      flex:1; 
-      display:flex; 
-      flex-direction:column; 
-      align-items:center; 
-      justify-content:center; 
-      text-decoration:none; 
-      font-size: 11px; 
-      color: #fff;
-      transition: 0.3s;
-    }
-    .mob-btn:hover {
-      background: rgba(255,255,255,0.05);
-    }
-    .mob-btn.wa { 
-      background: var(--accent); 
-      color: #000; 
-      font-weight: bold; 
-      font-size: 14px;
-    }
-
-    /* Modal */
-    .modal { 
-      display:none; 
-      position:fixed; 
-      z-index:10001; 
-      inset:0; 
-      background:rgba(0,0,0,0.95); 
-      align-items:center; 
-      justify-content:center;
-    }
-    .modal img { 
-      max-width:95%; 
-      max-height:85vh; 
-      border: 2px solid var(--gold); 
-      border-radius: 5px;
-    }
-
-    /* Hidden elements for KG */
-    [data-lang="kg"] { display: none; }
-    body.lang-kg [data-lang="ru"] { display: none; }
-    body.lang-kg [data-lang="kg"] { display: inline-block; }
-
-    /* Contact form */
-    .contact-form {
-      background: #0a0a0a; 
-      padding: 30px; 
-      border-radius: 20px; 
-      border: 1px solid #1a1a1a;
-      margin: 60px 0 120px;
-    }
-    .contact-form input {
-      width:100%; 
-      padding:15px; 
-      margin-bottom:15px; 
-      background:#111; 
-      border:1px solid #333; 
-      color:#fff; 
-      border-radius:10px;
-      font-size: 16px;
-    }
-
-    /* Current works */
-    .current-works {
-      display: flex; 
-      gap: 15px; 
-      overflow-x: auto; 
-      padding-bottom: 20px; 
+    
+    /* Квиз */
+    .quiz-box {
+      background: #111;
+      padding: 40px;
+      border-radius: 15px;
+      border: 1px solid #333;
       margin: 40px 0;
     }
-    .work-card {
-      min-width: 280px; 
-      background: #111; 
-      padding: 20px; 
-      border-radius: 15px; 
-      border-left: 4px solid var(--accent);
+    
+    .quiz-step {
+      text-align: center;
     }
-
+    
+    .quiz-step h2 {
+      color: #d4af37;
+      margin-bottom: 20px;
+    }
+    
+    .quiz-step p {
+      color: #aaa;
+      margin-bottom: 30px;
+    }
+    
+    .options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+    
+    .option-btn {
+      padding: 20px;
+      background: #1a1a1a;
+      border: 2px solid #333;
+      border-radius: 10px;
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .option-btn:hover {
+      border-color: #d4af37;
+      background: #222;
+    }
+    
+    .car-input {
+      width: 100%;
+      max-width: 400px;
+      padding: 15px;
+      background: #1a1a1a;
+      border: 2px solid #333;
+      border-radius: 10px;
+      color: white;
+      font-size: 16px;
+      margin: 20px 0;
+    }
+    
+    /* Мобильная панель */
+    .mobile-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #000;
+      display: flex;
+      border-top: 1px solid #333;
+      z-index: 1000;
+    }
+    
+    .mobile-btn {
+      flex: 1;
+      padding: 15px;
+      text-align: center;
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+    }
+    
+    .mobile-btn.wa {
+      background: #25D366;
+      color: white;
+    }
+    
+    /* Услуги */
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin: 40px 0;
+    }
+    
+    .service-card {
+      background: #111;
+      padding: 25px;
+      border-radius: 10px;
+      border: 1px solid #333;
+    }
+    
+    .service-card h3 {
+      color: #d4af37;
+      margin-bottom: 10px;
+    }
+    
+    /* Галерея */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 15px;
+      margin: 40px 0;
+    }
+    
+    .gallery img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+    
+    /* Контакты */
+    .contact-form {
+      background: #111;
+      padding: 40px;
+      border-radius: 15px;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    
+    .form-input {
+      width: 100%;
+      padding: 15px;
+      margin: 10px 0;
+      background: #1a1a1a;
+      border: 1px solid #333;
+      border-radius: 8px;
+      color: white;
+    }
+    
+    /* Адаптивность */
     @media (max-width: 768px) {
-        .nav-links { display: none; }
-        .hero { min-height: 85vh; }
-        .hero-content { padding-top: 80px; }
-        .grid { grid-template-columns: 1fr; }
-        .brand-big { font-size: 45px; letter-spacing: 2px; }
-        .section-title { margin: 60px 0 30px; }
-        .quiz-box { padding: 25px; }
-        .btn { padding: 14px 28px; }
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      
+      .hero p {
+        font-size: 1rem;
+      }
+      
+      .section {
+        padding: 40px 15px;
+      }
+      
+      .quiz-box {
+        padding: 25px 20px;
+      }
+      
+      .options {
+        grid-template-columns: 1fr;
+      }
+      
+      .gallery {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
-<body class="lang-ru">
-
-  <nav class="top-nav">
-    <div class="container nav-flex">
-      <a href="#" class="logo">ARLAN<span> MOTORWORKS</span></a>
-      <div class="nav-right">
-        <div class="lang-switch">
-          <div class="lang-btn active" onclick="setLang('ru')">RU</div>
-          <div class="lang-btn" onclick="setLang('kg')">KG</div>
-        </div>
-        <a href="#contact" class="btn-gold" style="padding: 8px 15px; border-radius: 5px; font-size: 12px; text-decoration: none;">
-            <span data-lang="ru">ЗАПИСЬ</span>
-            <span data-lang="kg">ЖАЗЫЛУУ</span>
-        </a>
-      </div>
-    </div>
-  </nav>
-
-  <header class="hero">
-    <div class="hero-content">
-      <div class="brand-big">ARLAN MOTORWORKS</div>
-      <h1 style="font-size: 20px; margin-bottom: 30px; letter-spacing: 1px; font-weight: 300;">
-        <span data-lang="ru">Премиум сервис для вашего авто в Кызыл-Кия</span>
-        <span data-lang="kg">Кызыл-Кыядагы унааңыз үчүн премиум сервис</span>
-      </h1>
-      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px;">
-        <a href="#quiz" class="btn btn-gold">
-            <span data-lang="ru">Узнать цену</span>
-            <span data-lang="kg">Баасын билүү</span>
-        </a>
-        <a href="#gallery" class="btn btn-outline">
-            <span data-lang="ru">Наши работы</span>
-            <span data-lang="kg">Биздин иштер</span>
-        </a>
-      </div>
+<body>
+  <!-- Навигация -->
+  <header>
+    <a href="#" class="logo">ARLAN<span> MOTORWORKS</span></a>
+    <div class="nav-buttons">
+      <a href="tel:+996505511125" class="nav-btn">ЗВОНОК</a>
+      <a href="#quiz" class="nav-btn">ЗАПИСЬ</a>
     </div>
   </header>
 
-  <div class="container">
-    <div class="grid">
-      <div class="card">
-        <h3 data-lang="ru">⏱️ Быстро</h3><h3 data-lang="kg">⏱️ Тез</h3>
-        <p data-lang="ru">Диагностика за 15 мин</p><p data-lang="kg">Диагностика 15 мүнөттө</p>
+  <!-- Главный экран -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>ARLAN MOTORWORKS</h1>
+      <p>Премиум автосервис в Кызыл-Кия</p>
+      
+      <div class="highlight">
+        <p>🚗 Бесплатная диагностика</p>
+        <p>🛡️ Гарантия 12 месяцев</p>
+        <p>⚡ Срочный ремонт за 1-2 дня</p>
       </div>
-      <div class="card">
-        <h3 data-lang="ru">🛡️ Гарантия</h3><h3 data-lang="kg">🛡️ Кепилдик</h3>
-        <p data-lang="ru">6-12 месяцев на работу</p><p data-lang="kg">Иш үчүн 6-12 ай кепилдик</p>
-      </div>
-      <div class="card">
-        <h3 data-lang="ru">✨ Премиум</h3><h3 data-lang="kg">✨ Премиум</h3>
-        <p data-lang="ru">Чехлы на руль и сиденья</p><p data-lang="kg">Рулга жана отургучтарга каптар</p>
-      </div>
-    </div>
-
-    <section id="quiz" class="quiz-box">
-      <div id="q-step1" style="text-align: center;">
-        <h2 data-lang="ru">Что нужно проверить?</h2><h2 data-lang="kg">Эмнени текшерүү керек?</h2>
-        <p style="color: #aaa; margin-bottom: 20px;">
-          <span data-lang="ru">Ответьте на 2 вопроса и получите расчет стоимости</span>
-          <span data-lang="kg">2 суроого жооп бериңиз жана баасын алыңыз</span>
-        </p>
-        <div class="grid" style="margin-top: 20px;">
-            <button class="btn btn-outline" onclick="nextQ('Двигатель / Мотор')">
-              <span data-lang="ru">Двигатель</span><span data-lang="kg">Мотор</span>
-            </button>
-            <button class="btn btn-outline" onclick="nextQ('Ходовая / Пневмо')">
-              <span data-lang="ru">Ходовая</span><span data-lang="kg">Жүрүү бөлүгү</span>
-            </button>
-            <button class="btn btn-outline" onclick="nextQ('ТО / Масло')">
-              <span data-lang="ru">ТО / Масло</span><span data-lang="kg">ТО / Май</span>
-            </button>
-        </div>
-      </div>
-      <div id="q-step2" style="display: none; text-align: center;">
-        <h2 data-lang="ru">Марка вашего авто?</h2><h2 data-lang="kg">Унааңыздын маркасы?</h2>
-        <input type="text" id="car-name" placeholder="BMW, Lexus, Toyota..." 
-               style="width: 100%; max-width: 400px; padding: 15px; margin: 20px 0; background: #111; border: 1px solid #444; color: #fff; border-radius: 10px; font-size: 16px;">
-        <button class="btn btn-gold" onclick="finishQ()" style="padding: 15px 35px;">
-            <span data-lang="ru">Получить расчет в WhatsApp</span>
-            <span data-lang="kg">WhatsApp аркылуу баасын алуу</span>
-        </button>
-      </div>
-    </section>
-
-    <h2 class="section-title">
-        <span data-lang="ru">Сейчас в работе</span>
-        <span data-lang="kg">Учурда иште</span>
-    </h2>
-    <div class="current-works">
-      <div class="work-card">
-        <small style="color: var(--accent); font-weight: bold;">● IN WORK</small>
-        <h4>Range Rover Vogue</h4>
-        <p style="font-size: 14px; color: #aaa;" data-lang="ru">Ремонт пневмоподвески</p>
-        <p style="font-size: 14px; color: #aaa;" data-lang="kg">Пневмо асмасын оңдоо</p>
-        <small style="color: #666; display: block; margin-top: 10px;">Срок: 2 дня</small>
-      </div>
-      <div class="work-card" style="border-left-color: var(--gold);">
-        <small style="color: var(--gold); font-weight: bold;">● FINISHED</small>
-        <h4>Toyota Land Cruiser 300</h4>
-        <p style="font-size: 14px; color: #aaa;" data-lang="ru">Детейлинг и керамика</p>
-        <p style="font-size: 14px; color: #aaa;" data-lang="kg">Детейлинг жана керамика</p>
-        <small style="color: #666; display: block; margin-top: 10px;">Срок: 3 дня</small>
+      
+      <div>
+        <a href="#quiz" class="btn btn-gold">УЗНАТЬ ЦЕНУ</a>
+        <a href="#contact" class="btn btn-outline">ЗАПИСАТЬСЯ</a>
       </div>
     </div>
+  </section>
 
-    <section id="gallery">
-        <h2 class="section-title">
-            <span data-lang="ru">Галерея работ</span>
-            <span data-lang="kg">Иштердин галереясы</span>
-        </h2>
-        <div class="gallery-grid">
-            <img src="https://img.freepik.com/premium-photo/black-car-stands-brightly-lit-auto-repair-shop-while-technician-works-background-highlighting-busy-evening-atmosphere-generative-ai_262708-50900.jpg" 
-                 class="gallery-img"
-                 alt="Ремонт автомобиля в автосервисе ARLAN MOTORWORKS">
-            <img src="https://thumbs.dreamstime.com/z/matte-black-lamborghini-urus-premium-workshop-luxury-cars-stands-lit-sharp-taillights-visible-mercedes-amg-new-range-418022131.jpg" 
-                 class="gallery-img"
-                 alt="Детейлинг автомобиля в Кызыл-Кия">
-            <img src="https://thumbs.dreamstime.com/b/view-car-raised-lift-car-repair-shop-close-up-bottom-view-vehicle-raised-lift-car-repair-shop-155436634.jpg" 
-                 class="gallery-img"
-                 alt="Диагностика ходовой части">
-            <img src="https://img.freepik.com/premium-photo/two-mechanic-was-checking-car-suspension-vehicle-raised-lift-maintenance-station-car-service-station-with-two-men-repair-car-mechanic-working-automotive-service-center_35150-2949.jpg" 
-                 class="gallery-img"
-                 alt="Мастера ARLAN MOTORWORKS за работой">
-        </div>
-    </section>
-
-    <section id="contact">
-        <h2 class="section-title">
-            <span data-lang="ru">Записаться на сервис</span>
-            <span data-lang="kg">Сервиске жазылуу</span>
-        </h2>
-        <div class="contact-form">
-            <form id="contact-form">
-                <input type="text" id="client-name" placeholder="Ваше имя / Сиздин атыңыз" required>
-                <input type="tel" id="client-phone" placeholder="+996 ___ ___ ___" required>
-                <button type="submit" class="btn btn-gold" style="width: 100%; padding: 16px; font-size: 16px;">
-                    <span data-lang="ru">Отправить в WhatsApp</span>
-                    <span data-lang="kg">WhatsApp аркылуу жөнөтүү</span>
-                </button>
-            </form>
-        </div>
-    </section>
-  </div>
-
-  <footer style="text-align: center; padding: 50px 20px; border-top: 1px solid #111; color: #666; background: #0a0a0a;">
-    <p style="color: var(--gold); font-weight: bold; margin-bottom: 10px; font-size: 18px;">ARLAN MOTORWORKS</p>
-    <p>Кызыл-Кия, ул. Кудайбердиева Умсунай, 3</p>
-    <p style="margin: 10px 0;"><a href="tel:+996505511125" style="color: #fff; text-decoration: none;">+996 505 511 125</a></p>
-    <p style="margin-top: 20px; font-size: 12px; color: #444;">
-      © 2024 ARLAN MOTORWORKS. 
-      <span data-lang="ru">Все права защищены.</span>
-      <span data-lang="kg">Бардык укуктар корголгон.</span>
+  <!-- Квиз -->
+  <section class="section" id="quiz">
+    <h2 class="section-title">Что нужно проверить?</h2>
+    <p style="text-align: center; color: #aaa; margin-bottom: 40px;">
+      Ответьте на 2 вопроса и получите расчет стоимости
     </p>
-  </footer>
+    
+    <div class="quiz-box">
+      <!-- Шаг 1 -->
+      <div id="step1" class="quiz-step">
+        <h3>Выберите тип работ:</h3>
+        <div class="options">
+          <button class="option-btn" onclick="selectService('Двигатель')">ДВИГАТЕЛЬ</button>
+          <button class="option-btn" onclick="selectService('Ходовая часть')">ХОДОВАЯ</button>
+          <button class="option-btn" onclick="selectService('ТО / Масло')">ТО / МАСЛО</button>
+        </div>
+      </div>
+      
+      <!-- Шаг 2 (скрыт изначально) -->
+      <div id="step2" class="quiz-step" style="display: none;">
+        <h3>Марка вашего автомобиля?</h3>
+        <input type="text" id="carBrand" class="car-input" placeholder="Например: Toyota, BMW, Mercedes">
+        <div style="margin-top: 30px;">
+          <button class="btn btn-gold" onclick="sendToWhatsApp()">ПОЛУЧИТЬ РАСЧЕТ В WHATSAPP</button>
+          <button class="btn btn-outline" onclick="goBack()">НАЗАД</button>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <!-- Услуги -->
+  <section class="section" id="services">
+    <h2 class="section-title">Наши услуги</h2>
+    <div class="services">
+      <div class="service-card">
+        <h3>Диагностика</h3>
+        <p>Компьютерная диагностика двигателя и систем автомобиля</p>
+      </div>
+      <div class="service-card">
+        <h3>Ремонт ходовой</h3>
+        <p>Ремонт подвески, пневмоподвески, замена амортизаторов</p>
+      </div>
+      <div class="service-card">
+        <h3>Детейлинг</h3>
+        <p>Полировка, химчистка, керамическое покрытие</p>
+      </div>
+      <div class="service-card">
+        <h3>ТО и масло</h3>
+        <p>Замена масла, фильтров, техническое обслуживание</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Галерея -->
+  <section class="section" id="gallery">
+    <h2 class="section-title">Наши работы</h2>
+    <div class="gallery">
+      <img src="https://img.freepik.com/premium-photo/black-car-stands-brightly-lit-auto-repair-shop-while-technician-works-background-highlighting-busy-evening-atmosphere-generative-ai_262708-50900.jpg" alt="Ремонт автомобиля">
+      <img src="https://thumbs.dreamstime.com/z/matte-black-lamborghini-urus-premium-workshop-luxury-cars-stands-lit-sharp-taillights-visible-mercedes-amg-new-range-418022131.jpg" alt="Детейлинг">
+      <img src="https://thumbs.dreamstime.com/b/view-car-raised-lift-car-repair-shop-close-up-bottom-view-vehicle-raised-lift-car-repair-shop-155436634.jpg" alt="Диагностика">
+    </div>
+  </section>
+
+  <!-- Контакты -->
+  <section class="section" id="contact">
+    <h2 class="section-title">Контакты</h2>
+    <div class="contact-form">
+      <h3 style="text-align: center; color: #d4af37; margin-bottom: 20px;">Записаться на сервис</h3>
+      <input type="text" id="name" class="form-input" placeholder="Ваше имя">
+      <input type="tel" id="phone" class="form-input" placeholder="Номер телефона">
+      <button class="btn btn-gold" style="width: 100%; margin-top: 20px;" onclick="sendContactForm()">ОТПРАВИТЬ В WHATSAPP</button>
+    </div>
+    
+    <div style="text-align: center; margin-top: 40px;">
+      <p>📞 Телефон: <a href="tel:+996505511125" style="color: #d4af37;">+996 505 511 125</a></p>
+      <p>📍 Адрес: Кызыл-Кия, ул. Кудайбердиева Умсунай, 3</p>
+      <p>⏰ Часы работы: 9:00 - 19:00 (Пн-Сб)</p>
+    </div>
+  </section>
+
+  <!-- Мобильная панель -->
   <div class="mobile-bar">
-    <a href="tel:+996505511125" class="mob-btn">📞 <span data-lang="ru">Позвонить</span><span data-lang="kg">Чалуу</span></a>
-    <a href="https://wa.me/996505511125" class="mob-btn wa">💬 WhatsApp</a>
-  </div>
-
-  <div id="imgModal" class="modal">
-    <span style="position:absolute; top:20px; right:30px; color:#fff; font-size:40px; cursor:pointer;" 
-          onclick="document.getElementById('imgModal').style.display='none'">×</span>
-    <img id="modalImg" alt="Увеличенное изображение">
+    <a href="tel:+996505511125" class="mobile-btn">📞 ПОЗВОНИТЬ</a>
+    <a href="https://wa.me/996505511125" class="mobile-btn wa">💬 WHATSAPP</a>
   </div>
 
   <script>
-    // Language Logic
-    function setLang(lang) {
-      document.body.className = 'lang-' + lang;
-      document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-      event.target.classList.add('active');
-      localStorage.setItem('preferredLang', lang);
+    // Переменная для хранения выбранной услуги
+    let selectedService = '';
+    
+    // Функция выбора услуги
+    function selectService(service) {
+      selectedService = service;
+      
+      // Показываем шаг 2, скрываем шаг 1
+      document.getElementById('step1').style.display = 'none';
+      document.getElementById('step2').style.display = 'block';
+      
+      // Прокручиваем к шагу 2
+      document.getElementById('step2').scrollIntoView({ behavior: 'smooth' });
     }
-
-    // Load preferred language
-    const savedLang = localStorage.getItem('preferredLang');
-    if (savedLang) {
-      setLang(savedLang);
+    
+    // Функция "Назад"
+    function goBack() {
+      // Показываем шаг 1, скрываем шаг 2
+      document.getElementById('step1').style.display = 'block';
+      document.getElementById('step2').style.display = 'none';
     }
-
-    // Quiz Logic
-    let selectedService = "";
-    function nextQ(service) {
-        selectedService = service;
-        document.getElementById('q-step1').style.display = 'none';
-        document.getElementById('q-step2').style.display = 'block';
+    
+    // Функция отправки в WhatsApp
+    function sendToWhatsApp() {
+      const carBrand = document.getElementById('carBrand').value.trim();
+      
+      if (!carBrand) {
+        alert('Пожалуйста, укажите марку вашего автомобиля');
+        return;
+      }
+      
+      // Формируем сообщение
+      const message = `🛠️ Запрос с сайта ARLAN MOTORWORKS\n\n` +
+                     `Тип работ: ${selectedService}\n` +
+                     `Марка авто: ${carBrand}\n\n` +
+                     `Прошу рассчитать стоимость.`;
+      
+      // Кодируем сообщение для URL
+      const encodedMessage = encodeURIComponent(message);
+      
+      // Открываем WhatsApp
+      window.open(`https://wa.me/996505511125?text=${encodedMessage}`, '_blank');
     }
-    function finishQ() {
-        const car = document.getElementById('car-name').value.trim();
-        if (!car) {
-            alert(document.body.classList.contains('lang-kg') ? 
-                  'Унааңыздын маркасын жазыңыз!' : 
-                  'Пожалуйста, укажите марку вашего авто!');
-            return;
-        }
-        const text = `🛠️ Квиз с сайта ARLAN MOTORWORKS\n\nУслуга: ${selectedService}\nАвто: ${car}\n\nПрошу рассчитать стоимость.`;
-        window.open(`https://wa.me/996505511125?text=${encodeURIComponent(text)}`, '_blank');
+    
+    // Функция отправки контактной формы
+    function sendContactForm() {
+      const name = document.getElementById('name').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      
+      if (!name || !phone) {
+        alert('Пожалуйста, заполните все поля');
+        return;
+      }
+      
+      // Формируем сообщение
+      const message = `📋 Новая заявка с сайта ARLAN MOTORWORKS\n\n` +
+                     `Имя: ${name}\n` +
+                     `Телефон: ${phone}\n\n` +
+                     `Прошу перезвонить для записи на сервис.`;
+      
+      // Кодируем сообщение для URL
+      const encodedMessage = encodeURIComponent(message);
+      
+      // Открываем WhatsApp
+      window.open(`https://wa.me/996505511125?text=${encodedMessage}`, '_blank');
     }
-
-    // Modal Logic
-    document.querySelectorAll('.gallery-img').forEach(img => {
-      img.onclick = function() {
-        document.getElementById('imgModal').style.display = 'flex';
-        document.getElementById('modalImg').src = this.src;
+    
+    // Маска для телефона
+    document.getElementById('phone').addEventListener('input', function(e) {
+      let value = e.target.value.replace(/\D/g, '');
+      
+      if (value.startsWith('996')) {
+        value = value.substring(3);
+      }
+      
+      value = value.substring(0, 9);
+      
+      if (value.length > 0) {
+        const groups = value.match(/.{1,3}/g);
+        e.target.value = '+996 ' + groups.join(' ');
+      } else {
+        e.target.value = '+996 ';
       }
     });
-
-    // Phone Mask
-    document.getElementById('client-phone').oninput = function(e) {
-        let v = e.target.value.replace(/\D/g,'');
-        if(v.startsWith('996')) v = v.substring(3);
-        v = v.substring(0,9);
-        e.target.value = v ? '+996 ' + v.match(/.{1,3}/g)?.join(' ') : '+996 ';
-    };
-
-    // Form Submit
-    document.getElementById('contact-form').onsubmit = function(e) {
-        e.preventDefault();
-        const n = document.getElementById('client-name').value;
-        const p = document.getElementById('client-phone').value;
-        const text = `📋 Новая заявка с сайта ARLAN MOTORWORKS\n\n👤 Имя: ${n}\n📞 Телефон: ${p}\n\nПрошу связаться со мной.`;
-        window.open(`https://wa.me/996505511125?text=${encodeURIComponent(text)}`, '_blank');
-    };
-
-    // Smooth scroll
+    
+    // Плавная прокрутка
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
         const targetId = this.getAttribute('href');
         if (targetId === '#') return;
         
         const targetElement = document.querySelector(targetId);
         if (targetElement) {
-          e.preventDefault();
           window.scrollTo({
             top: targetElement.offsetTop - 80,
             behavior: 'smooth'
@@ -510,23 +534,6 @@
         }
       });
     });
-
-    // Simple animation on scroll (optional)
-    window.addEventListener('scroll', function() {
-      const elements = document.querySelectorAll('.card, .gallery-img, .work-card');
-      elements.forEach(el => {
-        const rect = el.getBoundingClientRect();
-        if (rect.top < window.innerHeight - 50) {
-          el.style.opacity = '1';
-          el.style.transform = 'translateY(0)';
-        }
-      });
-    });
-
-    // Trigger initial check
-    setTimeout(() => {
-      window.dispatchEvent(new Event('scroll'));
-    }, 100);
   </script>
 </body>
 </html>
