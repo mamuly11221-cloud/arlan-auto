@@ -42,6 +42,14 @@
             font-size: 20px;
             font-weight: 900;
             text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
         }
         
         .nav-btn {
@@ -52,6 +60,14 @@
             text-decoration: none;
             font-weight: bold;
             font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .nav-btn.telegram {
+            background: #0088cc;
+            color: white;
         }
         
         /* ГЛАВНЫЙ ЭКРАН */
@@ -124,6 +140,15 @@
             background: transparent;
             border: 2px solid #d4af37;
             color: #d4af37;
+        }
+        
+        .btn-telegram {
+            background: #0088cc;
+            color: white;
+        }
+        
+        .btn-telegram:hover {
+            background: #0077b3;
         }
         
         /* КВИЗ */
@@ -381,6 +406,59 @@
             color: white;
         }
         
+        /* TELEGRAM WIDGET */
+        .telegram-widget {
+            position: fixed;
+            bottom: 90px;
+            left: 20px;
+            z-index: 100;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .telegram-btn {
+            background: linear-gradient(135deg, #0088cc, #006699);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 5px 20px rgba(0,136,204,0.4);
+            transition: all 0.3s;
+            border: 2px solid white;
+        }
+        
+        .telegram-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,136,204,0.6);
+            background: linear-gradient(135deg, #0099e6, #0077b3);
+        }
+        
+        .telegram-icon {
+            font-size: 28px;
+        }
+        
+        .telegram-text {
+            line-height: 1.2;
+        }
+        
+        .telegram-title {
+            font-weight: bold;
+            font-size: 16px;
+        }
+        
+        .telegram-subtitle {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        
         /* МОБИЛЬНАЯ ПАНЕЛЬ */
         .mobile-bar {
             position: fixed;
@@ -400,10 +478,18 @@
             color: white;
             text-decoration: none;
             font-weight: bold;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
         }
         
         .mobile-btn.wa {
             background: #25D366;
+        }
+        
+        .mobile-btn.tg {
+            background: #0088cc;
         }
         
         /* ОТСЛЕЖИВАНИЕ */
@@ -539,6 +625,30 @@
             font-size: 1.1rem;
         }
         
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #d4af37;
+            text-decoration: none;
+            padding: 10px 20px;
+            border: 1px solid #d4af37;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        
+        .social-link:hover {
+            background: #d4af37;
+            color: #000;
+        }
+        
         /* АДАПТИВНОСТЬ */
         @media (max-width: 768px) {
             .hero-content h1 {
@@ -570,6 +680,28 @@
             .time-slots {
                 grid-template-columns: repeat(2, 1fr);
             }
+            
+            .telegram-widget {
+                bottom: 80px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 90%;
+            }
+            
+            .telegram-btn {
+                justify-content: center;
+                padding: 12px 15px;
+            }
+            
+            .nav-buttons {
+                flex-direction: column;
+                gap: 5px;
+            }
+            
+            .nav-btn {
+                padding: 6px 10px;
+                font-size: 12px;
+            }
         }
         
         @media (max-width: 480px) {
@@ -583,8 +715,16 @@
             }
             
             .mobile-btn {
-                font-size: 12px;
-                padding: 12px 5px;
+                font-size: 11px;
+                padding: 10px 5px;
+            }
+            
+            .telegram-title {
+                font-size: 14px;
+            }
+            
+            .telegram-subtitle {
+                font-size: 10px;
             }
         }
         
@@ -617,11 +757,30 @@
     <!-- УВЕДОМЛЕНИЕ -->
     <div id="notification" style="position:fixed;top:80px;right:20px;background:#111;color:white;padding:15px;border-radius:10px;border-left:4px solid #d4af37;display:none;z-index:1000;"></div>
 
+    <!-- TELEGRAM WIDGET -->
+    <div class="telegram-widget">
+        <a href="https://t.me/ArlanMotorworksBot" target="_blank" class="telegram-btn">
+            <span class="telegram-icon">✈️</span>
+            <div class="telegram-text">
+                <div class="telegram-title">Написать в Telegram</div>
+                <div class="telegram-subtitle">Быстрая запись на сервис</div>
+            </div>
+        </a>
+    </div>
+
     <!-- ШАПКА -->
     <header>
-        <div class="logo">🚗 ARLAN MOTORWORKS</div>
-        <div>
-            <a href="tel:+996505511125" class="nav-btn">📞 +996 505 511 125</a>
+        <div class="logo">
+            <span>🚗</span>
+            <span>ARLAN MOTORWORKS</span>
+        </div>
+        <div class="nav-buttons">
+            <a href="tel:+996505511125" class="nav-btn">
+                📞 +996 505 511 125
+            </a>
+            <a href="https://t.me/ArlanMotorworksBot" target="_blank" class="nav-btn telegram">
+                ✈️ Telegram
+            </a>
         </div>
     </header>
 
@@ -636,11 +795,13 @@
                 <div class="feature">✅ Гарантия 12 месяцев на все работы</div>
                 <div class="feature">✅ Срочный ремонт за 1-2 дня</div>
                 <div class="feature">✅ Отслеживание ремонта онлайн</div>
+                <div class="feature">✅ Запись через Telegram-бота</div>
             </div>
             
             <div>
                 <button onclick="startQuiz()" class="btn">🔧 РАССЧИТАТЬ СТОИМОСТЬ</button>
                 <button onclick="showCalendar()" class="btn btn-outline">📅 ЗАПИСАТЬСЯ ОНЛАЙН</button>
+                <button onclick="openTelegram()" class="btn btn-telegram">✈️ ЗАПИСАТЬСЯ В TELEGRAM</button>
             </div>
         </div>
     </section>
@@ -685,7 +846,7 @@
                 <p style="color: #aaa; margin: 20px 0;">Точную стоимость назовет мастер после бесплатной диагностики</p>
                 <div>
                     <button onclick="bookWithDiscount()" class="btn">📅 ЗАПИСАТЬСЯ СО СКИДКОЙ</button>
-                    <button onclick="shareCalculation()" class="btn btn-outline">📱 ПОДЕЛИТЬСЯ</button>
+                    <button onclick="openTelegramWithPrice()" class="btn btn-telegram">✈️ ЗАПИСАТЬСЯ В TELEGRAM</button>
                 </div>
             </div>
         </div>
@@ -823,6 +984,17 @@
             <p>📍 Кызыл-Кия, ул. Кудайбердиева Умсунай, 3</p>
             <p>⏰ 9:00 - 19:00 (Пн-Сб)</p>
         </div>
+        
+        <div class="social-links">
+            <a href="https://wa.me/996505511125" target="_blank" class="social-link">
+                <span style="font-size:20px;">💬</span>
+                <span>WhatsApp</span>
+            </a>
+            <a href="https://t.me/ArlanMotorworksBot" target="_blank" class="social-link">
+                <span style="font-size:20px;">✈️</span>
+                <span>Telegram-бот</span>
+            </a>
+        </div>
     </section>
 
     <!-- ЧАТ-БОТ -->
@@ -846,10 +1018,22 @@
 
     <!-- МОБИЛЬНАЯ ПАНЕЛЬ -->
     <div class="mobile-bar">
-        <a href="tel:+996505511125" class="mobile-btn">📞 ЗВОНОК</a>
-        <a href="https://wa.me/996505511125" class="mobile-btn wa">💬 WHATSAPP</a>
-        <a href="#quizSection" class="mobile-btn">💰 ЦЕНА</a>
-        <a href="#contact" class="mobile-btn">📝 ЗАПИСЬ</a>
+        <a href="tel:+996505511125" class="mobile-btn">
+            <span style="font-size:18px;">📞</span>
+            <span>ЗВОНОК</span>
+        </a>
+        <a href="https://wa.me/996505511125" class="mobile-btn wa">
+            <span style="font-size:18px;">💬</span>
+            <span>WHATSAPP</span>
+        </a>
+        <a href="https://t.me/ArlanMotorworksBot" target="_blank" class="mobile-btn tg">
+            <span style="font-size:18px;">✈️</span>
+            <span>TELEGRAM</span>
+        </a>
+        <a href="#quizSection" class="mobile-btn">
+            <span style="font-size:18px;">💰</span>
+            <span>ЦЕНА</span>
+        </a>
     </div>
 
     <script>
@@ -860,6 +1044,20 @@
         let selectedTime = null;
         let currentMonth = new Date().getMonth();
         let currentYear = new Date().getFullYear();
+        
+        // ==================== TELEGRAM ФУНКЦИИ ====================
+        function openTelegram() {
+            const message = `🚗 *Запись на сервис ARLAN MOTORWORKS*\n\nЗдравствуйте! Хочу записаться на автосервис.`;
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://t.me/ArlanMotorworksBot?start=${encodedMessage}`, '_blank');
+        }
+        
+        function openTelegramWithPrice() {
+            const price = document.getElementById('priceResult').textContent;
+            const message = `🚗 *Запись на сервис ARLAN MOTORWORKS*\n\nУслуга: ${selectedService}\nАвтомобиль: ${selectedCar}\nРасчетная стоимость: ${price} сом\nХочу записаться!`;
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://t.me/ArlanMotorworksBot?start=${encodedMessage}`, '_blank');
+        }
         
         // ==================== УВЕДОМЛЕНИЯ ====================
         function showNotification(message, type = 'info') {
@@ -879,12 +1077,10 @@
             selectedService = '';
             selectedCar = '';
             
-            // Сбрасываем все шаги
             document.getElementById('step1').classList.add('active');
             document.getElementById('step2').classList.remove('active');
             document.getElementById('step3').classList.remove('active');
             
-            // Прокручиваем к квизу
             document.getElementById('quizSection').scrollIntoView({ behavior: 'smooth' });
             
             showNotification('Выберите тип работ', 'info');
@@ -910,7 +1106,6 @@
             
             selectedCar = carInput;
             
-            // Рассчитываем примерную цену
             const prices = {
                 'Двигатель': { min: 3000, max: 20000 },
                 'Ходовая часть': { min: 2500, max: 15000 },
@@ -925,7 +1120,6 @@
             document.getElementById('step2').classList.remove('active');
             document.getElementById('step3').classList.add('active');
             
-            // Сохраняем в историю
             saveToHistory('price_calculation', { service: selectedService, car: selectedCar, price });
         }
         
@@ -934,23 +1128,6 @@
             const message = `🎯 Запись со скидкой!\n\nУслуга: ${selectedService}\nАвтомобиль: ${selectedCar}\nРасчетная стоимость: ${price} сом\nПромокод: ARLANFREE\n\nХочу записаться!`;
             
             sendToWhatsApp(message);
-        }
-        
-        function shareCalculation() {
-            const price = document.getElementById('priceResult').textContent;
-            const text = `ARLAN MOTORWORKS рассчитал стоимость: ${selectedService} - ${price} сом`;
-            
-            if (navigator.share) {
-                navigator.share({
-                    title: 'Расчет стоимости ремонта',
-                    text: text,
-                    url: window.location.href
-                });
-            } else {
-                navigator.clipboard.writeText(text).then(() => {
-                    showNotification('Скопировано в буфер обмена!', 'success');
-                });
-            }
         }
         
         // ==================== КАЛЕНДАРЬ ====================
@@ -969,7 +1146,6 @@
             const daysContainer = document.getElementById('calendarDays');
             daysContainer.innerHTML = '';
             
-            // Заголовки дней недели
             const daysOfWeek = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
             daysOfWeek.forEach(day => {
                 const dayElement = document.createElement('div');
@@ -979,17 +1155,14 @@
                 daysContainer.appendChild(dayElement);
             });
             
-            // Первый день месяца
             const firstDay = new Date(currentYear, currentMonth, 1).getDay();
             const adjustedFirstDay = firstDay === 0 ? 6 : firstDay - 1;
             
-            // Пустые ячейки
             for (let i = 0; i < adjustedFirstDay; i++) {
                 const empty = document.createElement('div');
                 daysContainer.appendChild(empty);
             }
             
-            // Дни месяца
             const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
             const today = new Date();
             
@@ -998,7 +1171,6 @@
                 dayElement.className = 'day';
                 dayElement.textContent = day;
                 
-                // Проверяем, не прошедшая ли дата
                 const date = new Date(currentYear, currentMonth, day);
                 if (date < today) {
                     dayElement.style.opacity = '0.3';
@@ -1007,7 +1179,6 @@
                     dayElement.onclick = () => selectDay(dayElement, day);
                 }
                 
-                // Отмечаем сегодня
                 if (date.getDate() === today.getDate() && 
                     date.getMonth() === today.getMonth() && 
                     date.getFullYear() === today.getFullYear()) {
@@ -1017,17 +1188,14 @@
                 daysContainer.appendChild(dayElement);
             }
             
-            // Генерируем слоты времени
             generateTimeSlots();
         }
         
         function selectDay(element, day) {
-            // Снимаем выделение со всех дней
             document.querySelectorAll('.day').forEach(el => {
                 el.classList.remove('selected');
             });
             
-            // Выделяем выбранный день
             element.classList.add('selected');
             selectedDate = new Date(currentYear, currentMonth, day);
         }
@@ -1048,12 +1216,10 @@
         }
         
         function selectTimeSlot(element, time) {
-            // Снимаем выделение со всех слотов
             document.querySelectorAll('.time-slot').forEach(el => {
                 el.classList.remove('selected');
             });
             
-            // Выделяем выбранный слот
             element.classList.add('selected');
             selectedTime = time;
         }
@@ -1118,10 +1284,8 @@
                 return;
             }
             
-            // Показываем статус с анимацией
             document.getElementById('statusDisplay').classList.remove('hidden');
             
-            // Анимируем прогресс
             const steps = document.querySelectorAll('.status-step');
             let step = 0;
             
@@ -1177,11 +1341,9 @@
             
             if (!message) return;
             
-            // Добавляем сообщение пользователя
             addChatMessage(message, 'user');
             input.value = '';
             
-            // Ответ бота через 1 секунду
             setTimeout(() => {
                 const response = getBotResponse(message);
                 addChatMessage(response, 'bot');
@@ -1203,10 +1365,11 @@
             const responses = {
                 'привет': 'Привет! Чем могу помочь?',
                 'цена': 'Стоимость зависит от марки авто и объема работ. Пройдите квиз для расчета!',
-                'диагностика': 'Диагностика бесплатная при записи через сайт!',
+                'диагностика': 'Диагностика бесплатная при записи через сайт или Telegram-бота!',
                 'время': 'Работаем с 9:00 до 19:00, Пн-Сб',
                 'адрес': 'Кызыл-Кия, ул. Кудайбердиева Умсунай, 3',
-                'запись': 'Записаться можно через календарь на сайте или по телефону +996 505 511 125'
+                'запись': 'Записаться можно через Telegram-бота @ArlanMotorworksBot или по телефону +996 505 511 125',
+                'телеграм': 'Наш Telegram-бот: @ArlanMotorworksBot. Быстрая запись и консультация!'
             };
             
             for (const [key, response] of Object.entries(responses)) {
@@ -1215,7 +1378,7 @@
                 }
             }
             
-            return 'Позвоните нам для уточнения: +996 505 511 125';
+            return 'Позвоните нам для уточнения: +996 505 511 125 или напишите в Telegram: @ArlanMotorworksBot';
         }
         
         // ==================== УТИЛИТЫ ====================
@@ -1227,7 +1390,6 @@
                 timestamp: new Date().toISOString()
             });
             
-            // Ограничиваем историю 50 записями
             if (history.length > 50) {
                 history.shift();
             }
@@ -1275,7 +1437,6 @@
             const visits = parseInt(localStorage.getItem('arlan_visits') || '0') + 1;
             localStorage.setItem('arlan_visits', visits.toString());
             
-            // Приветствуем постоянных посетителей
             if (visits > 1) {
                 setTimeout(() => {
                     showNotification('С возвращением в ARLAN MOTORWORKS!', 'success');
@@ -1284,9 +1445,14 @@
             
             // Инициализируем календарь
             generateCalendar();
+            
+            // Показываем Telegram виджет через 3 секунды
+            setTimeout(() => {
+                document.querySelector('.telegram-widget').style.opacity = '1';
+            }, 3000);
         });
         
-        console.log('🚗 ARLAN MOTORWORKS загружен!');
+        console.log('🚗 ARLAN MOTORWORKS загружен! Telegram-бот: @ArlanMotorworksBot');
     </script>
 </body>
 </html>
