@@ -4,370 +4,1191 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ARLAN MOTORWORKS — Премиум автосервис в Кызыл-Кия</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚗</text></svg>">
     
     <style>
-        /* ВСЕ СТИЛИ ОСТАЮТСЯ ТАКИМИ ЖЕ КАК ВЫШЕ */
-        /* ... (вставьте все стили из предыдущего ответа) ... */
+        /* СБРОС И БАЗОВЫЕ СТИЛИ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: #000;
+            color: white;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* НАВИГАЦИЯ */
+        header {
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #333;
+        }
+        
+        .logo {
+            color: #d4af37;
+            font-size: 20px;
+            font-weight: 900;
+            text-decoration: none;
+        }
+        
+        .nav-btn {
+            background: #d4af37;
+            color: #000;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        /* ГЛАВНЫЙ ЭКРАН */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.7)), 
+                        url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 20px;
+            padding-top: 80px;
+        }
+        
+        .hero-content h1 {
+            font-size: 3.5rem;
+            color: #d4af37;
+            margin-bottom: 15px;
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: #ccc;
+        }
+        
+        .features {
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid #d4af37;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 30px 0;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 10px 0;
+        }
+        
+        /* КНОПКИ */
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: #d4af37;
+            color: #000;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            margin: 5px;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background: #b5952f;
+            transform: translateY(-2px);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #d4af37;
+            color: #d4af37;
+        }
+        
+        /* КВИЗ */
+        .section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #d4af37;
+            margin-bottom: 40px;
+        }
+        
+        .quiz-box {
+            background: #111;
+            padding: 40px;
+            border-radius: 15px;
+            border: 1px solid #333;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .quiz-step {
+            text-align: center;
+            display: none;
+        }
+        
+        .quiz-step.active {
+            display: block;
+        }
+        
+        .options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
+        }
+        
+        .option {
+            padding: 20px;
+            background: #222;
+            border: 2px solid #333;
+            border-radius: 10px;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .option:hover {
+            border-color: #d4af37;
+            background: #2a2a2a;
+        }
+        
+        .car-input {
+            width: 100%;
+            max-width: 400px;
+            padding: 15px;
+            background: #222;
+            border: 2px solid #333;
+            border-radius: 10px;
+            color: white;
+            font-size: 16px;
+            margin: 20px 0;
+        }
+        
+        /* УСЛУГИ */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+        
+        .service-card {
+            background: #111;
+            padding: 25px;
+            border-radius: 10px;
+            border: 1px solid #333;
+            position: relative;
+        }
+        
+        .service-card h3 {
+            color: #d4af37;
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+        
+        .price {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #d4af37;
+            color: #000;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+        
+        /* КАЛЕНДАРЬ */
+        .calendar {
+            background: #111;
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid #333;
+            max-width: 500px;
+            margin: 30px auto;
+            display: none;
+        }
+        
+        .calendar.active {
+            display: block;
+        }
+        
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .calendar-days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            margin-bottom: 20px;
+        }
+        
+        .day {
+            padding: 10px;
+            text-align: center;
+            background: #222;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .day:hover {
+            background: #2a2a2a;
+        }
+        
+        .day.selected {
+            background: #d4af37;
+            color: #000;
+        }
+        
+        .time-slots {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+        
+        .time-slot {
+            padding: 10px;
+            background: #222;
+            text-align: center;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .time-slot:hover {
+            background: #2a2a2a;
+        }
+        
+        .time-slot.selected {
+            background: #d4af37;
+            color: #000;
+        }
+        
+        /* ЧАТ-БОТ */
+        .chat-toggle {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 100;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        
+        .chat-widget {
+            position: fixed;
+            bottom: 160px;
+            right: 20px;
+            width: 350px;
+            background: #111;
+            border-radius: 15px;
+            border: 1px solid #333;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.5);
+            display: none;
+            flex-direction: column;
+            z-index: 100;
+            max-height: 500px;
+        }
+        
+        .chat-widget.active {
+            display: flex;
+        }
+        
+        .chat-header {
+            background: #d4af37;
+            color: #000;
+            padding: 15px;
+            border-radius: 15px 15px 0 0;
+            font-weight: bold;
+        }
+        
+        .chat-messages {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            max-height: 300px;
+        }
+        
+        .message {
+            margin-bottom: 10px;
+            padding: 10px 15px;
+            border-radius: 10px;
+            max-width: 80%;
+        }
+        
+        .message.bot {
+            background: #222;
+            margin-right: auto;
+        }
+        
+        .message.user {
+            background: #d4af37;
+            color: #000;
+            margin-left: auto;
+        }
+        
+        .chat-input {
+            display: flex;
+            padding: 15px;
+            border-top: 1px solid #333;
+        }
+        
+        .chat-input input {
+            flex: 1;
+            padding: 10px;
+            background: #222;
+            border: 1px solid #333;
+            border-radius: 8px;
+            color: white;
+        }
+        
+        /* МОБИЛЬНАЯ ПАНЕЛЬ */
+        .mobile-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #000;
+            display: flex;
+            border-top: 1px solid #333;
+            z-index: 99;
+        }
+        
+        .mobile-btn {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .mobile-btn.wa {
+            background: #25D366;
+        }
+        
+        /* ОТСЛЕЖИВАНИЕ */
+        .tracking-box {
+            background: #111;
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid #333;
+            max-width: 500px;
+            margin: 30px auto;
+            text-align: center;
+        }
+        
+        .tracking-input {
+            width: 100%;
+            padding: 15px;
+            background: #222;
+            border: 1px solid #333;
+            border-radius: 8px;
+            color: white;
+            margin: 20px 0;
+        }
+        
+        .status-bar {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin: 30px 0;
+        }
+        
+        .status-bar::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 50px;
+            right: 50px;
+            height: 2px;
+            background: #333;
+            z-index: 1;
+        }
+        
+        .status-step {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            flex: 1;
+        }
+        
+        .status-step .circle {
+            width: 40px;
+            height: 40px;
+            background: #222;
+            border-radius: 50%;
+            margin: 0 auto 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #333;
+        }
+        
+        .status-step.active .circle {
+            background: #d4af37;
+            color: #000;
+            border-color: #d4af37;
+        }
+        
+        /* БАЗА ЗНАНИЙ */
+        .knowledge-box {
+            background: #111;
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid #333;
+            margin-top: 30px;
+        }
+        
+        .search-box {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .search-box input {
+            flex: 1;
+            padding: 15px;
+            background: #222;
+            border: 1px solid #333;
+            border-radius: 8px;
+            color: white;
+        }
+        
+        .problem-item {
+            background: #222;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .problem-item:hover {
+            background: #2a2a2a;
+            border-color: #d4af37;
+        }
+        
+        /* КОНТАКТЫ */
+        .contact-form {
+            background: #111;
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid #333;
+            max-width: 500px;
+            margin: 30px auto;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 15px;
+            background: #222;
+            border: 1px solid #333;
+            border-radius: 8px;
+            color: white;
+            margin: 10px 0;
+            font-size: 16px;
+        }
+        
+        .contact-info {
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        .contact-info p {
+            margin: 10px 0;
+            font-size: 1.1rem;
+        }
+        
+        /* АДАПТИВНОСТЬ */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section {
+                padding: 50px 15px;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .quiz-box {
+                padding: 25px 20px;
+            }
+            
+            .options {
+                grid-template-columns: 1fr;
+            }
+            
+            .chat-widget {
+                width: calc(100% - 40px);
+                right: 20px;
+                left: 20px;
+            }
+            
+            .time-slots {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .btn {
+                padding: 12px 20px;
+                font-size: 14px;
+            }
+            
+            .mobile-btn {
+                font-size: 12px;
+                padding: 12px 5px;
+            }
+        }
+        
+        /* АНИМАЦИИ */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease;
+        }
+        
+        /* УТИЛИТЫ */
+        .hidden {
+            display: none !important;
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        .mt-20 { margin-top: 20px; }
+        .mt-30 { margin-top: 30px; }
+        .mb-20 { margin-bottom: 20px; }
+        .mb-30 { margin-bottom: 30px; }
     </style>
 </head>
 <body>
-    <!-- ВСЯ HTML-РАЗМЕТКА ОСТАЕТСЯ ТАКОЙ ЖЕ -->
-    <!-- ... (вставьте всю HTML-разметку из предыдущего ответа) ... -->
+    <!-- УВЕДОМЛЕНИЕ -->
+    <div id="notification" style="position:fixed;top:80px;right:20px;background:#111;color:white;padding:15px;border-radius:10px;border-left:4px solid #d4af37;display:none;z-index:1000;"></div>
 
-    <script>
-        // =================== ПОЛНАЯ РЕАЛИЗАЦИЯ ВСЕХ ФУНКЦИЙ ===================
+    <!-- ШАПКА -->
+    <header>
+        <div class="logo">🚗 ARLAN MOTORWORKS</div>
+        <div>
+            <a href="tel:+996505511125" class="nav-btn">📞 +996 505 511 125</a>
+        </div>
+    </header>
+
+    <!-- ГЛАВНЫЙ ЭКРАН -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>ARLAN MOTORWORKS</h1>
+            <p>Премиум автосервис в Кызыл-Кия</p>
+            
+            <div class="features">
+                <div class="feature">✅ Бесплатная диагностика при записи онлайн</div>
+                <div class="feature">✅ Гарантия 12 месяцев на все работы</div>
+                <div class="feature">✅ Срочный ремонт за 1-2 дня</div>
+                <div class="feature">✅ Отслеживание ремонта онлайн</div>
+            </div>
+            
+            <div>
+                <button onclick="startQuiz()" class="btn">🔧 РАССЧИТАТЬ СТОИМОСТЬ</button>
+                <button onclick="showCalendar()" class="btn btn-outline">📅 ЗАПИСАТЬСЯ ОНЛАЙН</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- КВИЗ -->
+    <section class="section" id="quizSection">
+        <h2 class="section-title">РАССЧИТАЙТЕ СТОИМОСТЬ</h2>
         
-        // 1. БАЗА ДАННЫХ
-        const DB = {
-            services: [
-                {id: 1, name: "Диагностика", price: 0, icon: "🔍", duration: "1 час", popular: true},
-                {id: 2, name: "Замена масла", price: 1500, icon: "⚙️", duration: "1-2 часа", popular: true},
-                {id: 3, name: "Ремонт ходовой", price: 2500, icon: "🛞", duration: "3-4 часа", popular: false},
-                {id: 4, name: "Ремонт двигателя", price: 5000, icon: "🚗", duration: "1-2 дня", popular: false},
-                {id: 5, name: "Кузовные работы", price: 3000, icon: "🔨", duration: "2-3 дня", popular: false},
-                {id: 6, name: "Детейлинг", price: 4000, icon: "✨", duration: "1 день", popular: true}
-            ],
-            
-            prices: {
-                'Двигатель': { min: 3000, max: 25000 },
-                'Ходовая часть': { min: 2500, max: 15000 },
-                'ТО / Масло': { min: 1500, max: 8000 },
-                'Кузовные работы': { min: 5000, max: 50000 },
-                'Диагностика': { min: 0, max: 2500 },
-                'Детейлинг': { min: 3000, max: 20000 }
-            },
-            
-            chatBot: {
-                'цена': 'Стоимость зависит от марки авто и объема работ. Пройдите квиз для расчета!',
-                'время': 'Мы работаем с 9:00 до 19:00, Пн-Сб',
-                'адрес': 'Кызыл-Кия, ул. Кудайбердиева Умсунай, 3',
-                'диагностика': 'Бесплатная диагностика при записи онлайн!',
-                'гарантия': 'Гарантия 12 месяцев на все работы',
-                'запчасти': 'Работаем с оригинальными и качественными аналогами'
-            }
-        };
-
-        // 2. ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ
-        let selectedService = '';
-        let selectedDate = null;
-        let selectedTime = null;
-        let chatHistory = [];
-
-        // 3. ИНИЦИАЛИЗАЦИЯ ПРИ ЗАГРУЗКЕ
-        document.addEventListener('DOMContentLoaded', function() {
-            initServices();
-            initCalendar();
-            loadStats();
-            startFreeSlotsCounter();
-        });
-
-        // 4. СЕРВИСЫ
-        function initServices() {
-            const container = document.getElementById('servicesList');
-            container.innerHTML = DB.services.map(service => `
-                <div class="service-card">
-                    <div class="service-price">${service.price === 0 ? 'БЕСПЛАТНО' : service.price + ' сом'}</div>
-                    <h3>${service.icon} ${service.name}</h3>
-                    <p>${service.description || 'Профессиональное выполнение работ'}</p>
-                    <p><small>⏱️ ${service.duration}</small></p>
-                    <button onclick="selectService('${service.name}')" class="btn btn-outline" style="margin-top: 15px;">
-                        Выбрать
+        <div class="quiz-box">
+            <!-- Шаг 1: Выбор услуги -->
+            <div id="step1" class="quiz-step active">
+                <h3>Что нужно сделать с автомобилем?</h3>
+                <div class="options">
+                    <button class="option" onclick="selectService('Двигатель')">
+                        🚗 ДВИГАТЕЛЬ
+                    </button>
+                    <button class="option" onclick="selectService('Ходовая часть')">
+                        🛞 ХОДОВАЯ
+                    </button>
+                    <button class="option" onclick="selectService('ТО / Масло')">
+                        ⚙️ ТО / МАСЛО
+                    </button>
+                    <button class="option" onclick="selectService('Диагностика')">
+                        🔍 ДИАГНОСТИКА
                     </button>
                 </div>
-            `).join('');
-        }
+            </div>
+            
+            <!-- Шаг 2: Марка авто -->
+            <div id="step2" class="quiz-step">
+                <h3>Марка и модель вашего автомобиля?</h3>
+                <input type="text" id="carInput" class="car-input" placeholder="Например: Toyota Camry">
+                <div class="mt-30">
+                    <button onclick="calculatePrice()" class="btn">💰 РАССЧИТАТЬ СТОИМОСТЬ</button>
+                    <button onclick="goBack()" class="btn btn-outline">← НАЗАД</button>
+                </div>
+            </div>
+            
+            <!-- Шаг 3: Результат -->
+            <div id="step3" class="quiz-step">
+                <h3>Примерная стоимость: <span id="priceResult">0</span> сом</h3>
+                <p style="color: #aaa; margin: 20px 0;">Точную стоимость назовет мастер после бесплатной диагностики</p>
+                <div>
+                    <button onclick="bookWithDiscount()" class="btn">📅 ЗАПИСАТЬСЯ СО СКИДКОЙ</button>
+                    <button onclick="shareCalculation()" class="btn btn-outline">📱 ПОДЕЛИТЬСЯ</button>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        // 5. КАЛЕНДАРЬ
-        function initCalendar() {
-            generateCalendar(new Date().getFullYear(), new Date().getMonth());
-            generateTimeSlots();
-        }
+    <!-- КАЛЕНДАРЬ -->
+    <div id="calendar" class="calendar">
+        <div class="calendar-header">
+            <button onclick="prevMonth()" class="btn btn-outline">←</button>
+            <h3 id="monthDisplay">Апрель 2024</h3>
+            <button onclick="nextMonth()" class="btn btn-outline">→</button>
+        </div>
+        
+        <div class="calendar-days" id="calendarDays">
+            <!-- Дни будут добавлены через JS -->
+        </div>
+        
+        <h4>Выберите время:</h4>
+        <div class="time-slots" id="timeSlots">
+            <!-- Время будет добавлено через JS -->
+        </div>
+        
+        <button onclick="confirmBooking()" class="btn" style="width: 100%; margin-top: 20px;">
+            📅 ПОДТВЕРДИТЬ ЗАПИСЬ
+        </button>
+    </div>
 
-        function generateCalendar(year, month) {
-            const container = document.getElementById('calendarDays');
-            const date = new Date(year, month, 1);
-            const monthNames = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь",
-                               "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"];
+    <!-- УСЛУГИ -->
+    <section class="section" id="services">
+        <h2 class="section-title">НАШИ УСЛУГИ</h2>
+        
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="price">БЕСПЛАТНО</div>
+                <h3>🔍 Компьютерная диагностика</h3>
+                <p>Полная диагностика двигателя и электронных систем автомобиля</p>
+            </div>
             
-            document.getElementById('currentMonth').textContent = `${monthNames[month]} ${year}`;
+            <div class="service-card">
+                <div class="price">от 1500 сом</div>
+                <h3>⚙️ Замена масла и ТО</h3>
+                <p>Замена масла, фильтров, техническое обслуживание</p>
+            </div>
             
-            // Очищаем контейнер
-            container.innerHTML = '';
+            <div class="service-card">
+                <div class="price">от 2500 сом</div>
+                <h3>🛞 Ремонт ходовой части</h3>
+                <p>Ремонт подвески, замена амортизаторов, шаровых опор</p>
+            </div>
             
-            // Первый день месяца
-            const firstDay = new Date(year, month, 1).getDay();
-            const adjustedFirstDay = firstDay === 0 ? 6 : firstDay - 1;
+            <div class="service-card">
+                <div class="price">от 5000 сом</div>
+                <h3>🚗 Ремонт двигателя</h3>
+                <p>Капитальный и текущий ремонт двигателей любой сложности</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ОТСЛЕЖИВАНИЕ -->
+    <section class="section">
+        <h2 class="section-title">🔍 ОТСЛЕДИТЬ РЕМОНТ</h2>
+        
+        <div class="tracking-box">
+            <p>Введите номер заказа или телефон:</p>
+            <input type="text" id="trackingInput" class="tracking-input" placeholder="ARL-001 или +996 505 511 125">
+            <button onclick="checkStatus()" class="btn">ПРОВЕРИТЬ СТАТУС</button>
             
-            // Пустые ячейки до первого дня
-            for (let i = 0; i < adjustedFirstDay; i++) {
-                const emptyDay = document.createElement('div');
-                emptyDay.className = 'calendar-day disabled';
-                container.appendChild(emptyDay);
-            }
-            
-            // Дни месяца
-            const daysInMonth = new Date(year, month + 1, 0).getDate();
-            const today = new Date();
-            
-            for (let day = 1; day <= daysInMonth; day++) {
-                const dayElement = document.createElement('div');
-                dayElement.className = 'calendar-day';
-                dayElement.textContent = day;
+            <div id="statusDisplay" class="hidden mt-30">
+                <div class="status-bar">
+                    <div class="status-step active">
+                        <div class="circle">1</div>
+                        <p>Диагностика</p>
+                    </div>
+                    <div class="status-step">
+                        <div class="circle">2</div>
+                        <p>Ремонт</p>
+                    </div>
+                    <div class="status-step">
+                        <div class="circle">3</div>
+                        <p>Готово</p>
+                    </div>
+                </div>
                 
-                // Проверяем, сегодня ли это
-                if (year === today.getFullYear() && month === today.getMonth() && day === today.getDate()) {
-                    dayElement.classList.add('today');
-                }
-                
-                // Проверяем, прошедшая ли дата
-                const currentDate = new Date(year, month, day);
-                if (currentDate < today) {
-                    dayElement.classList.add('disabled');
-                } else {
-                    dayElement.onclick = () => selectDate(year, month, day);
-                }
-                
-                container.appendChild(dayElement);
-            }
-        }
+                <div style="background:#222;padding:15px;border-radius:10px;margin-top:20px;">
+                    <p><strong>Ожидаемое время готовности:</strong> Завтра, 15:00</p>
+                    <p><strong>Мастер:</strong> Айбек (стаж 8 лет)</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        function selectDate(year, month, day) {
-            selectedDate = new Date(year, month, day);
+    <!-- БАЗА ЗНАНИЙ -->
+    <section class="section">
+        <h2 class="section-title">📚 БАЗА ЗНАНИЙ</h2>
+        
+        <div class="knowledge-box">
+            <div class="search-box">
+                <input type="text" id="problemSearch" placeholder="Опишите проблему...">
+                <button onclick="searchProblems()" class="btn">НАЙТИ РЕШЕНИЕ</button>
+            </div>
             
-            // Убираем выделение у всех дней
-            document.querySelectorAll('.calendar-day').forEach(el => {
-                el.classList.remove('selected');
-            });
-            
-            // Добавляем выделение выбранному дню
-            event.target.classList.add('selected');
-            
-            // Генерируем слоты времени для выбранной даты
-            generateTimeSlots();
-        }
+            <div id="problemsList">
+                <div class="problem-item" onclick="showSolution(1)">
+                    <h4>Стук в передней подвеске</h4>
+                    <p>Возможные причины: шаровые опоры, сайлентблоки</p>
+                </div>
+                <div class="problem-item" onclick="showSolution(2)">
+                    <h4>Машина "ест" масло</h4>
+                    <p>Проблемы с поршневыми кольцами или сальниками</p>
+                </div>
+                <div class="problem-item" onclick="showSolution(3)">
+                    <h4>Не греет печка</h4>
+                    <p>Неисправен термостат или радиатор печки</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        function generateTimeSlots() {
-            const container = document.getElementById('timeSlots');
-            const slots = ['9:00', '10:30', '12:00', '13:30', '15:00', '16:30', '18:00'];
+    <!-- КОНТАКТЫ -->
+    <section class="section" id="contact">
+        <h2 class="section-title">📞 КОНТАКТЫ</h2>
+        
+        <div class="contact-form">
+            <h3 style="color:#d4af37;text-align:center;margin-bottom:20px;">Отправить заявку</h3>
             
-            container.innerHTML = slots.map(time => `
-                <div class="time-slot" onclick="selectTime('${time}')">${time}</div>
-            `).join('');
-        }
+            <input type="text" id="name" class="form-input" placeholder="Ваше имя">
+            <input type="tel" id="phone" class="form-input" placeholder="Номер телефона">
+            <input type="text" id="car" class="form-input" placeholder="Марка автомобиля">
+            
+            <button onclick="sendContactForm()" class="btn" style="width:100%;">📱 ОТПРАВИТЬ В WHATSAPP</button>
+        </div>
+        
+        <div class="contact-info">
+            <p>📞 <a href="tel:+996505511125" style="color:#d4af37;">+996 505 511 125</a></p>
+            <p>📍 Кызыл-Кия, ул. Кудайбердиева Умсунай, 3</p>
+            <p>⏰ 9:00 - 19:00 (Пн-Сб)</p>
+        </div>
+    </section>
 
-        function selectTime(time) {
-            selectedTime = time;
-            
-            // Убираем выделение у всех слотов
-            document.querySelectorAll('.time-slot').forEach(el => {
-                el.classList.remove('selected');
-            });
-            
-            // Добавляем выделение выбранному слоту
-            event.target.classList.add('selected');
-        }
+    <!-- ЧАТ-БОТ -->
+    <div class="chat-toggle" onclick="toggleChat()">💬</div>
+    
+    <div class="chat-widget" id="chatWidget">
+        <div class="chat-header">
+            Виртуальный помощник
+            <button onclick="toggleChat()" style="background:none;border:none;color:#000;font-size:20px;cursor:pointer;float:right;">×</button>
+        </div>
+        
+        <div class="chat-messages" id="chatMessages">
+            <div class="message bot">Привет! Я помощник ARLAN MOTORWORKS. Чем могу помочь?</div>
+        </div>
+        
+        <div class="chat-input">
+            <input type="text" id="chatInput" placeholder="Введите сообщение..." onkeypress="if(event.key=='Enter') sendMessage()">
+            <button onclick="sendMessage()" class="btn" style="margin-left:10px;">➤</button>
+        </div>
+    </div>
 
-        function showBookingCalendar() {
-            document.getElementById('bookingCalendar').style.display = 'block';
-            document.getElementById('booking').scrollIntoView({ behavior: 'smooth' });
-        }
+    <!-- МОБИЛЬНАЯ ПАНЕЛЬ -->
+    <div class="mobile-bar">
+        <a href="tel:+996505511125" class="mobile-btn">📞 ЗВОНОК</a>
+        <a href="https://wa.me/996505511125" class="mobile-btn wa">💬 WHATSAPP</a>
+        <a href="#quizSection" class="mobile-btn">💰 ЦЕНА</a>
+        <a href="#contact" class="mobile-btn">📝 ЗАПИСЬ</a>
+    </div>
 
-        function confirmBooking() {
-            if (!selectedDate || !selectedTime) {
-                showNotification('Выберите дату и время!', 'error');
-                return;
-            }
+    <script>
+        // ==================== ОСНОВНЫЕ ПЕРЕМЕННЫЕ ====================
+        let selectedService = '';
+        let selectedCar = '';
+        let selectedDate = null;
+        let selectedTime = null;
+        let currentMonth = new Date().getMonth();
+        let currentYear = new Date().getFullYear();
+        
+        // ==================== УВЕДОМЛЕНИЯ ====================
+        function showNotification(message, type = 'info') {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.style.display = 'block';
+            notification.style.borderLeftColor = type === 'success' ? '#25D366' : 
+                                                type === 'error' ? '#ff4444' : '#d4af37';
             
-            const dateStr = selectedDate.toLocaleDateString('ru-RU');
-            const message = `📅 Новая запись:\n\nДата: ${dateStr}\nВремя: ${selectedTime}\nУслуга: ${selectedService || 'Не выбрана'}\n\nПодтвердите запись.`;
-            
-            sendToWhatsApp(message);
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 3000);
         }
-
-        // 6. КВИЗ
+        
+        // ==================== КВИЗ ====================
+        function startQuiz() {
+            selectedService = '';
+            selectedCar = '';
+            
+            // Сбрасываем все шаги
+            document.getElementById('step1').classList.add('active');
+            document.getElementById('step2').classList.remove('active');
+            document.getElementById('step3').classList.remove('active');
+            
+            // Прокручиваем к квизу
+            document.getElementById('quizSection').scrollIntoView({ behavior: 'smooth' });
+            
+            showNotification('Выберите тип работ', 'info');
+        }
+        
         function selectService(service) {
             selectedService = service;
-            
-            // Обновляем прогресс
-            document.getElementById('step1Progress').classList.remove('active');
-            document.getElementById('step2Progress').classList.add('active');
-            
-            // Переходим к шагу 2
-            document.getElementById('step1').classList.add('hidden');
-            document.getElementById('step2').classList.remove('hidden');
-            
-            trackEvent('service_selected', { service });
+            document.getElementById('step1').classList.remove('active');
+            document.getElementById('step2').classList.add('active');
         }
-
+        
+        function goBack() {
+            document.getElementById('step2').classList.remove('active');
+            document.getElementById('step1').classList.add('active');
+        }
+        
         function calculatePrice() {
-            const carBrand = document.getElementById('carBrand').value.trim();
-            if (!carBrand) {
+            const carInput = document.getElementById('carInput').value.trim();
+            if (!carInput) {
                 showNotification('Введите марку автомобиля', 'error');
                 return;
             }
             
-            // Показываем загрузку
-            document.getElementById('calculateText').classList.add('hidden');
-            document.getElementById('calculateLoading').classList.remove('hidden');
+            selectedCar = carInput;
             
-            // Имитация расчета
-            setTimeout(() => {
-                const priceInfo = DB.prices[selectedService] || { min: 1000, max: 10000 };
-                const randomPrice = Math.floor(Math.random() * (priceInfo.max - priceInfo.min)) + priceInfo.min;
-                
-                document.getElementById('estimatedPrice').textContent = randomPrice.toLocaleString();
-                
-                // Переходим к результату
-                document.getElementById('step2Progress').classList.remove('active');
-                document.getElementById('step3Progress').classList.add('active');
-                document.getElementById('step2').classList.add('hidden');
-                document.getElementById('step3').classList.remove('hidden');
-                
-                // Скрываем загрузку
-                document.getElementById('calculateText').classList.remove('hidden');
-                document.getElementById('calculateLoading').classList.add('hidden');
-                
-                trackEvent('price_calculated', { service: selectedService, carBrand, price: randomPrice });
-            }, 1500);
+            // Рассчитываем примерную цену
+            const prices = {
+                'Двигатель': { min: 3000, max: 20000 },
+                'Ходовая часть': { min: 2500, max: 15000 },
+                'ТО / Масло': { min: 1500, max: 8000 },
+                'Диагностика': { min: 0, max: 0 }
+            };
+            
+            const priceRange = prices[selectedService] || { min: 1000, max: 10000 };
+            const price = Math.floor((priceRange.min + priceRange.max) / 2);
+            
+            document.getElementById('priceResult').textContent = price.toLocaleString();
+            document.getElementById('step2').classList.remove('active');
+            document.getElementById('step3').classList.add('active');
+            
+            // Сохраняем в историю
+            saveToHistory('price_calculation', { service: selectedService, car: selectedCar, price });
         }
-
+        
         function bookWithDiscount() {
-            const carBrand = document.getElementById('carBrand').value.trim();
-            const price = document.getElementById('estimatedPrice').textContent;
-            
-            const message = `🎯 Запись со скидкой!\n\nУслуга: ${selectedService}\nАвто: ${carBrand}\nРасчетная стоимость: ${price} сом\nПромокод: ARLANFREE\n\nХочу записаться!`;
+            const price = document.getElementById('priceResult').textContent;
+            const message = `🎯 Запись со скидкой!\n\nУслуга: ${selectedService}\nАвтомобиль: ${selectedCar}\nРасчетная стоимость: ${price} сом\nПромокод: ARLANFREE\n\nХочу записаться!`;
             
             sendToWhatsApp(message);
         }
-
-        function goBackToStep1() {
-            document.getElementById('step2Progress').classList.remove('active');
-            document.getElementById('step1Progress').classList.add('active');
-            document.getElementById('step2').classList.add('hidden');
-            document.getElementById('step1').classList.remove('hidden');
-        }
-
-        function startNewCalculation() {
-            selectedService = '';
-            document.getElementById('carBrand').value = '';
+        
+        function shareCalculation() {
+            const price = document.getElementById('priceResult').textContent;
+            const text = `ARLAN MOTORWORKS рассчитал стоимость: ${selectedService} - ${price} сом`;
             
-            document.getElementById('step3Progress').classList.remove('active');
-            document.getElementById('step1Progress').classList.add('active');
-            document.getElementById('step3').classList.add('hidden');
-            document.getElementById('step1').classList.remove('hidden');
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Расчет стоимости ремонта',
+                    text: text,
+                    url: window.location.href
+                });
+            } else {
+                navigator.clipboard.writeText(text).then(() => {
+                    showNotification('Скопировано в буфер обмена!', 'success');
+                });
+            }
         }
-
-        // 7. ОТСЛЕЖИВАНИЕ
-        function checkRepairStatus() {
-            const trackingNumber = document.getElementById('trackingNumber').value.trim();
+        
+        // ==================== КАЛЕНДАРЬ ====================
+        function showCalendar() {
+            document.getElementById('calendar').classList.add('active');
+            generateCalendar();
+            document.getElementById('calendar').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        function generateCalendar() {
+            const monthNames = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь",
+                              "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"];
             
-            if (!trackingNumber) {
+            document.getElementById('monthDisplay').textContent = `${monthNames[currentMonth]} ${currentYear}`;
+            
+            const daysContainer = document.getElementById('calendarDays');
+            daysContainer.innerHTML = '';
+            
+            // Заголовки дней недели
+            const daysOfWeek = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
+            daysOfWeek.forEach(day => {
+                const dayElement = document.createElement('div');
+                dayElement.textContent = day;
+                dayElement.style.fontWeight = 'bold';
+                dayElement.style.color = '#d4af37';
+                daysContainer.appendChild(dayElement);
+            });
+            
+            // Первый день месяца
+            const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+            const adjustedFirstDay = firstDay === 0 ? 6 : firstDay - 1;
+            
+            // Пустые ячейки
+            for (let i = 0; i < adjustedFirstDay; i++) {
+                const empty = document.createElement('div');
+                daysContainer.appendChild(empty);
+            }
+            
+            // Дни месяца
+            const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+            const today = new Date();
+            
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dayElement = document.createElement('div');
+                dayElement.className = 'day';
+                dayElement.textContent = day;
+                
+                // Проверяем, не прошедшая ли дата
+                const date = new Date(currentYear, currentMonth, day);
+                if (date < today) {
+                    dayElement.style.opacity = '0.3';
+                    dayElement.style.cursor = 'not-allowed';
+                } else {
+                    dayElement.onclick = () => selectDay(dayElement, day);
+                }
+                
+                // Отмечаем сегодня
+                if (date.getDate() === today.getDate() && 
+                    date.getMonth() === today.getMonth() && 
+                    date.getFullYear() === today.getFullYear()) {
+                    dayElement.style.border = '2px solid #d4af37';
+                }
+                
+                daysContainer.appendChild(dayElement);
+            }
+            
+            // Генерируем слоты времени
+            generateTimeSlots();
+        }
+        
+        function selectDay(element, day) {
+            // Снимаем выделение со всех дней
+            document.querySelectorAll('.day').forEach(el => {
+                el.classList.remove('selected');
+            });
+            
+            // Выделяем выбранный день
+            element.classList.add('selected');
+            selectedDate = new Date(currentYear, currentMonth, day);
+        }
+        
+        function generateTimeSlots() {
+            const slotsContainer = document.getElementById('timeSlots');
+            slotsContainer.innerHTML = '';
+            
+            const timeSlots = ['9:00', '10:30', '12:00', '14:00', '15:30', '17:00'];
+            
+            timeSlots.forEach(time => {
+                const slot = document.createElement('div');
+                slot.className = 'time-slot';
+                slot.textContent = time;
+                slot.onclick = () => selectTimeSlot(slot, time);
+                slotsContainer.appendChild(slot);
+            });
+        }
+        
+        function selectTimeSlot(element, time) {
+            // Снимаем выделение со всех слотов
+            document.querySelectorAll('.time-slot').forEach(el => {
+                el.classList.remove('selected');
+            });
+            
+            // Выделяем выбранный слот
+            element.classList.add('selected');
+            selectedTime = time;
+        }
+        
+        function prevMonth() {
+            currentMonth--;
+            if (currentMonth < 0) {
+                currentMonth = 11;
+                currentYear--;
+            }
+            generateCalendar();
+        }
+        
+        function nextMonth() {
+            currentMonth++;
+            if (currentMonth > 11) {
+                currentMonth = 0;
+                currentYear++;
+            }
+            generateCalendar();
+        }
+        
+        function confirmBooking() {
+            if (!selectedDate || !selectedTime) {
+                showNotification('Выберите дату и время', 'error');
+                return;
+            }
+            
+            const dateStr = selectedDate.toLocaleDateString('ru-RU');
+            const message = `📅 Запись на сервис\n\nДата: ${dateStr}\nВремя: ${selectedTime}\nУслуга: ${selectedService || 'Уточню при звонке'}\nАвтомобиль: ${selectedCar || 'Уточню при звонке'}\n\nПодтвердите, пожалуйста!`;
+            
+            sendToWhatsApp(message);
+        }
+        
+        // ==================== WHATSAPP ====================
+        function sendToWhatsApp(message) {
+            const phone = '996505511125';
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/${phone}?text=${encodedMessage}`, '_blank');
+        }
+        
+        function sendContactForm() {
+            const name = document.getElementById('name').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const car = document.getElementById('car').value.trim();
+            
+            if (!name || !phone) {
+                showNotification('Заполните имя и телефон', 'error');
+                return;
+            }
+            
+            const message = `📋 Новая заявка\n\nИмя: ${name}\nТелефон: ${phone}\nАвтомобиль: ${car}\n\nПрошу перезвонить для консультации!`;
+            sendToWhatsApp(message);
+        }
+        
+        // ==================== ОТСЛЕЖИВАНИЕ ====================
+        function checkStatus() {
+            const input = document.getElementById('trackingInput').value.trim();
+            
+            if (!input) {
                 showNotification('Введите номер заказа или телефон', 'error');
                 return;
             }
             
-            // Имитация проверки
+            // Показываем статус с анимацией
             document.getElementById('statusDisplay').classList.remove('hidden');
             
-            // Анимация прогресса
+            // Анимируем прогресс
             const steps = document.querySelectorAll('.status-step');
-            steps.forEach((step, index) => {
-                setTimeout(() => {
-                    step.classList.add('active');
-                    if (index > 0) {
-                        steps[index - 1].classList.add('completed');
-                        steps[index - 1].classList.remove('active');
-                    }
-                }, index * 1000);
-            });
+            let step = 0;
             
-            trackEvent('repair_status_checked', { trackingNumber });
+            const interval = setInterval(() => {
+                if (step > 0) {
+                    steps[step - 1].classList.remove('active');
+                }
+                
+                if (step < steps.length) {
+                    steps[step].classList.add('active');
+                    step++;
+                } else {
+                    clearInterval(interval);
+                }
+            }, 1000);
+            
+            saveToHistory('status_check', { trackingNumber: input });
         }
-
-        // 8. БАЗА ЗНАНИЙ
+        
+        // ==================== БАЗА ЗНАНИЙ ====================
         function searchProblems() {
             const query = document.getElementById('problemSearch').value.toLowerCase();
-            const container = document.getElementById('problemsList');
+            const problems = document.querySelectorAll('.problem-item');
             
-            // Фильтрация (в реальном приложении был бы поиск по базе)
-            const problems = [
-                {title: "Стук в подвеске", desc: "Возможные причины: шаровые опоры, сайлентблоки"},
-                {title: "Течет масло", desc: "Проверьте сальники, прокладки, поддон картера"},
-                {title: "Не греет печка", desc: "Проблемы с термостатом, радиатором печки"}
-            ];
-            
-            const filtered = problems.filter(p => 
-                p.title.toLowerCase().includes(query) || 
-                p.desc.toLowerCase().includes(query)
-            );
-            
-            container.innerHTML = filtered.map(p => `
-                <div class="problem-item" onclick="showProblemDetail('${p.title}')">
-                    <h4>🔧 ${p.title}</h4>
-                    <p>${p.desc}</p>
-                    <button class="btn btn-outline btn-small" style="margin-top: 10px;">
-                        Подробнее
-                    </button>
-                </div>
-            `).join('');
-            
-            if (filtered.length === 0) {
-                container.innerHTML = '<p style="text-align: center; color: #aaa;">Ничего не найдено. Попробуйте другой запрос.</p>';
-            }
+            problems.forEach(problem => {
+                const text = problem.textContent.toLowerCase();
+                if (text.includes(query) || query === '') {
+                    problem.style.display = 'block';
+                } else {
+                    problem.style.display = 'none';
+                }
+            });
         }
-
-        // 9. ЧАТ-БОТ
+        
+        function showSolution(id) {
+            const solutions = {
+                1: 'Стук в подвеске обычно вызван износом шаровых опор или сайлентблоков. Рекомендуем диагностику ходовой части. Стоимость ремонта от 2500 сом.',
+                2: 'Повышенный расход масла часто связан с износом поршневых колец или сальников клапанов. Требуется диагностика двигателя. Стоимость от 3000 сом.',
+                3: 'Если не греет печка, проверьте термостат, радиатор печки и уровень охлаждающей жидкости. Диагностика системы отопления - 1000 сом.'
+            };
+            
+            showNotification(solutions[id] || 'Решение не найдено', 'info');
+        }
+        
+        // ==================== ЧАТ-БОТ ====================
         function toggleChat() {
-            const chat = document.getElementById('chatWidget');
-            chat.classList.toggle('open');
-            
-            if (chat.classList.contains('open')) {
-                initChat();
-            }
+            document.getElementById('chatWidget').classList.toggle('active');
         }
-
-        function initChat() {
-            const container = document.getElementById('chatMessages');
-            if (container.children.length === 0) {
-                container.innerHTML = `
-                    <div class="message bot">
-                        Привет! Я виртуальный помощник ARLAN MOTORWORKS. 
-                        Спросите меня о ценах, записи или проблемах с авто!
-                    </div>
-                `;
-            }
-        }
-
-        function sendChatMessage() {
+        
+        function sendMessage() {
             const input = document.getElementById('chatInput');
             const message = input.value.trim();
             
             if (!message) return;
             
             // Добавляем сообщение пользователя
-            addMessage(message, 'user');
+            addChatMessage(message, 'user');
             input.value = '';
             
-            // Имитация ответа бота
+            // Ответ бота через 1 секунду
             setTimeout(() => {
                 const response = getBotResponse(message);
-                addMessage(response, 'bot');
+                addChatMessage(response, 'bot');
             }, 1000);
         }
-
-        function getBotResponse(message) {
-            const lowerMsg = message.toLowerCase();
-            
-            for (const [keyword, response] of Object.entries(DB.chatBot)) {
-                if (lowerMsg.includes(keyword)) {
-                    return response;
-                }
-            }
-            
-            return 'Я не совсем понял вопрос. Позвоните нам: +996 505 511 125';
-        }
-
-        function addMessage(text, sender) {
+        
+        function addChatMessage(text, sender) {
             const container = document.getElementById('chatMessages');
             const message = document.createElement('div');
             message.className = `message ${sender}`;
@@ -375,130 +1196,47 @@
             container.appendChild(message);
             container.scrollTop = container.scrollHeight;
         }
-
-        // 10. УТИЛИТЫ
-        function showNotification(text, type = 'info') {
-            const notification = document.getElementById('notification');
-            notification.textContent = text;
-            notification.className = `notification ${type} show`;
-            
-            setTimeout(() => {
-                notification.classList.remove('show');
-            }, 3000);
-        }
-
-        function copyCouponCode() {
-            const code = 'ARLANFREE';
-            navigator.clipboard.writeText(code).then(() => {
-                showNotification('Код скопирован в буфер обмена!', 'success');
-            });
-        }
-
-        function sendToWhatsApp(message) {
-            const phone = '996505511125';
-            const encoded = encodeURIComponent(message);
-            window.open(`https://wa.me/${phone}?text=${encoded}`, '_blank');
-        }
-
-        function sendContactForm() {
-            const name = document.getElementById('contactName').value.trim();
-            const phone = document.getElementById('contactPhone').value.trim();
-            const car = document.getElementById('contactCar').value.trim();
-            const problem = document.getElementById('contactProblem').value.trim();
-            
-            if (!name || !phone) {
-                showNotification('Заполните имя и телефон', 'error');
-                return;
-            }
-            
-            const message = `📋 Новая заявка:\n\nИмя: ${name}\nТелефон: ${phone}\nАвто: ${car}\nПроблема: ${problem}\n\nПерезвоните мне!`;
-            
-            sendToWhatsApp(message);
-        }
-
-        function toggleMenu() {
-            document.getElementById('navButtons').classList.toggle('show');
-        }
-
-        // 11. СЧЕТЧИКИ И СТАТИСТИКА
-        function startFreeSlotsCounter() {
-            // Имитация изменения свободных окон
-            setInterval(() => {
-                const slots = document.getElementById('freeSlots');
-                const current = parseInt(slots.textContent);
-                const newCount = Math.max(1, Math.min(5, current + (Math.random() > 0.5 ? 1 : -1)));
-                slots.textContent = newCount;
-                
-                if (newCount <= 2) {
-                    document.querySelector('.urgency-banner').style.background = 'linear-gradient(90deg, #ff6b6b, #ff8e8e)';
-                }
-            }, 30000);
-        }
-
-        function loadStats() {
-            // Загрузка статистики из localStorage
-            const stats = JSON.parse(localStorage.getItem('arlan_stats') || '{}');
-            
-            // Обновляем счетчик посещений
-            if (!stats.visits) stats.visits = 0;
-            stats.visits++;
-            localStorage.setItem('arlan_stats', JSON.stringify(stats));
-            
-            // Показываем уведомление для постоянных клиентов
-            if (stats.visits > 3) {
-                showNotification(`С возвращением! У вас есть персональная скидка`, 'success');
-            }
-        }
-
-        function trackEvent(event, data) {
-            console.log(`📊 ${event}:`, data);
-            // Здесь можно добавить Google Analytics или другую аналитику
-        }
-
-        // 12. PWA ФУНКЦИИ
-        let deferredPrompt;
         
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            deferredPrompt = e;
+        function getBotResponse(message) {
+            const lowerMsg = message.toLowerCase();
             
-            // Показываем кнопку установки через 10 секунд
-            setTimeout(() => {
-                if (deferredPrompt) {
-                    document.getElementById('installPrompt').classList.add('show');
+            const responses = {
+                'привет': 'Привет! Чем могу помочь?',
+                'цена': 'Стоимость зависит от марки авто и объема работ. Пройдите квиз для расчета!',
+                'диагностика': 'Диагностика бесплатная при записи через сайт!',
+                'время': 'Работаем с 9:00 до 19:00, Пн-Сб',
+                'адрес': 'Кызыл-Кия, ул. Кудайбердиева Умсунай, 3',
+                'запись': 'Записаться можно через календарь на сайте или по телефону +996 505 511 125'
+            };
+            
+            for (const [key, response] of Object.entries(responses)) {
+                if (lowerMsg.includes(key)) {
+                    return response;
                 }
-            }, 10000);
-        });
-
-        function installPWA() {
-            if (deferredPrompt) {
-                deferredPrompt.prompt();
-                deferredPrompt.userChoice.then((choiceResult) => {
-                    if (choiceResult.outcome === 'accepted') {
-                        showNotification('Приложение установлено!', 'success');
-                    }
-                    deferredPrompt = null;
-                    document.getElementById('installPrompt').classList.remove('show');
-                });
             }
+            
+            return 'Позвоните нам для уточнения: +996 505 511 125';
         }
-
-        function hideInstallPrompt() {
-            document.getElementById('installPrompt').classList.remove('show');
-        }
-
-        // 13. АДАПТИВНЫЕ ФУНКЦИИ
-        window.addEventListener('scroll', () => {
-            const header = document.getElementById('mainHeader');
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
+        
+        // ==================== УТИЛИТЫ ====================
+        function saveToHistory(type, data) {
+            const history = JSON.parse(localStorage.getItem('arlan_history') || '[]');
+            history.push({
+                type,
+                data,
+                timestamp: new Date().toISOString()
+            });
+            
+            // Ограничиваем историю 50 записями
+            if (history.length > 50) {
+                history.shift();
             }
-        });
-
-        // Маска для телефона
-        document.getElementById('contactPhone').addEventListener('input', function(e) {
+            
+            localStorage.setItem('arlan_history', JSON.stringify(history));
+        }
+        
+        // Маска телефона
+        document.getElementById('phone').addEventListener('input', function(e) {
             let value = e.target.value.replace(/\D/g, '');
             
             if (value.startsWith('996')) {
@@ -514,49 +1252,41 @@
                 e.target.value = '+996 ';
             }
         });
-
+        
         // Плавная прокрутка
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
                 }
             });
         });
-
-        // 14. ПРОГРЕСС ЛОЯЛЬНОСТИ
-        function updateLoyaltyProgress() {
-            const progress = localStorage.getItem('arlan_loyalty') || 0;
-            const bar = document.getElementById('loyaltyProgress');
-            bar.style.width = `${Math.min(100, progress * 33)}%`;
-        }
-
-        function shareReferral() {
-            const link = `${window.location.origin}?ref=${btoa('arlan_referral')}`;
-            navigator.clipboard.writeText(link).then(() => {
-                showNotification('Реферальная ссылка скопирована!', 'success');
-            });
-        }
-
-        // 15. ОБРАБОТЧИКИ КЛАВИШ
-        document.addEventListener('keydown', (e) => {
-            // ESC закрывает чат
-            if (e.key === 'Escape') {
-                document.getElementById('chatWidget').classList.remove('open');
+        
+        // Сохраняем посещение
+        window.addEventListener('load', () => {
+            const visits = parseInt(localStorage.getItem('arlan_visits') || '0') + 1;
+            localStorage.setItem('arlan_visits', visits.toString());
+            
+            // Приветствуем постоянных посетителей
+            if (visits > 1) {
+                setTimeout(() => {
+                    showNotification('С возвращением в ARLAN MOTORWORKS!', 'success');
+                }, 2000);
             }
             
-            // Ctrl+K открывает поиск проблем
-            if (e.ctrlKey && e.key === 'k') {
-                e.preventDefault();
-                document.getElementById('problemSearch').focus();
-            }
+            // Инициализируем календарь
+            generateCalendar();
         });
-
-        // ИНИЦИАЛИЗАЦИЯ ПРИ ЗАГРУЗКЕ
+        
         console.log('🚗 ARLAN MOTORWORKS загружен!');
-        showNotification('Добро пожаловать в ARLAN MOTORWORKS!', 'success', 2000);
     </script>
 </body>
 </html>
