@@ -20,6 +20,7 @@
             color: white;
             line-height: 1.6;
             overflow-x: hidden;
+            padding-bottom: env(safe-area-inset-bottom); /* Добавлено для поддержки safe area на iOS */
         }
         
         /* НАВИГАЦИЯ */
@@ -334,7 +335,7 @@
         /* ЧАТ-БОТ */
         .chat-toggle {
             position: fixed;
-            bottom: 90px;
+            bottom: calc(90px + env(safe-area-inset-bottom));
             right: 20px;
             background: #25D366;
             color: white;
@@ -352,7 +353,7 @@
         
         .chat-widget {
             position: fixed;
-            bottom: 160px;
+            bottom: calc(160px + env(safe-area-inset-bottom));
             right: 20px;
             width: 350px;
             background: #111;
@@ -427,6 +428,7 @@
             display: flex;
             border-top: 1px solid #333;
             z-index: 99;
+            padding-bottom: env(safe-area-inset-bottom); /* Добавлено для видимости на iOS */
         }
         
         .mobile-btn {
@@ -599,7 +601,7 @@
         /* TELEGRAM WIDGET */
         .telegram-widget {
             position: fixed;
-            bottom: 160px;
+            bottom: calc(160px + env(safe-area-inset-bottom));
             right: 20px;
             background: #0088cc;
             color: white;
@@ -701,7 +703,7 @@
                 right: 10px;
                 left: 10px;
                 max-width: none;
-                bottom: 140px;
+                bottom: calc(140px + env(safe-area-inset-bottom));
             }
             
             .mobile-btn {
@@ -779,7 +781,7 @@
     </div>
 
     <!-- TELEGRAM BUTTON -->
-    <button onclick="toggleTelegramWidget()" style="position:fixed;bottom:90px;right:20px;background:#0088cc;color:white;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;cursor:pointer;z-index:1001;box-shadow:0 4px 15px rgba(0,136,204,0.4);border:none;transition:all 0.3s;" 
+    <button onclick="toggleTelegramWidget()" style="position:fixed;bottom:calc(90px + env(safe-area-inset-bottom));right:20px;background:#0088cc;color:white;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;cursor:pointer;z-index:1001;box-shadow:0 4px 15px rgba(0,136,204,0.4);border:none;transition:all 0.3s;" 
             onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
         ✈️
     </button>
@@ -1069,7 +1071,7 @@
         function openTelegram() {
             const message = `🚗 Запись на сервис ARLAN MOTORWORKS\n\nЗдравствуйте! Хочу записаться на автосервис.`;
             const encodedMessage = encodeURIComponent(message);
-            window.open(`https://t.me/ArlanAutoServiceBot?start=website`, '_blank');
+            window.open(`https://t.me/ArlanAutoServiceBot?start=website`, '_blank'); // Бот не найден, возможно, замените на существующий @username
         }
         
         function openTelegramWithPrice() {
