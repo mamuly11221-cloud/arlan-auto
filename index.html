@@ -81,22 +81,42 @@
             color: #ccc;
         }
         
-        .features {
+        .services-hero {
             background: rgba(212, 175, 55, 0.1);
             border: 1px solid #d4af37;
             border-radius: 10px;
-            padding: 20px;
+            padding: 25px;
             margin: 30px 0;
-            max-width: 500px;
+            max-width: 700px;
             margin-left: auto;
             margin-right: auto;
+            text-align: left;
         }
         
-        .feature {
+        .service-item-hero {
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 10px;
-            margin: 10px 0;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        
+        .service-item-hero:last-child {
+            border-bottom: none;
+        }
+        
+        .service-name {
+            font-weight: bold;
+            color: #d4af37;
+        }
+        
+        .service-price {
+            background: #d4af37;
+            color: #000;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 14px;
         }
         
         /* КНОПКИ */
@@ -124,6 +144,16 @@
             background: transparent;
             border: 2px solid #d4af37;
             color: #d4af37;
+        }
+        
+        .btn-telegram {
+            background: #0088cc;
+            color: white;
+        }
+        
+        .btn-whatsapp {
+            background: #25D366;
+            color: white;
         }
         
         /* КВИЗ */
@@ -207,6 +237,12 @@
             border-radius: 10px;
             border: 1px solid #333;
             position: relative;
+            transition: all 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: #d4af37;
         }
         
         .service-card h3 {
@@ -400,10 +436,31 @@
             color: white;
             text-decoration: none;
             font-weight: bold;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .mobile-btn span {
+            font-size: 12px;
+        }
+        
+        .mobile-btn.call {
+            background: #d4af37;
+            color: #000;
         }
         
         .mobile-btn.wa {
             background: #25D366;
+        }
+        
+        .mobile-btn.price {
+            background: #0088cc;
+        }
+        
+        .mobile-btn.book {
+            background: #333;
         }
         
         /* ОТСЛЕЖИВАНИЕ */
@@ -546,31 +603,48 @@
             right: 20px;
             background: #0088cc;
             color: white;
-            padding: 15px;
-            border-radius: 10px;
+            padding: 20px;
+            border-radius: 15px;
             z-index: 1000;
             display: none;
-            max-width: 300px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            max-width: 320px;
+            box-shadow: 0 5px 25px rgba(0,136,204,0.5);
+            border: 2px solid #0088cc;
         }
         
         .telegram-widget.active {
             display: block;
+            animation: slideIn 0.3s ease;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
         
         .telegram-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
         
         .telegram-close {
             background: none;
             border: none;
             color: white;
-            font-size: 20px;
+            font-size: 24px;
             cursor: pointer;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .telegram-close:hover {
+            background: rgba(255,255,255,0.2);
         }
         
         .telegram-btn {
@@ -582,7 +656,13 @@
             border-radius: 8px;
             text-decoration: none;
             font-weight: bold;
-            margin-top: 10px;
+            margin-top: 15px;
+            transition: all 0.3s;
+        }
+        
+        .telegram-btn:hover {
+            background: #f0f0f0;
+            transform: translateY(-2px);
         }
         
         /* АДАПТИВНОСТЬ */
@@ -621,6 +701,16 @@
                 right: 10px;
                 left: 10px;
                 max-width: none;
+                bottom: 140px;
+            }
+            
+            .mobile-btn {
+                font-size: 10px;
+                padding: 12px 5px;
+            }
+            
+            .services-hero {
+                padding: 20px;
             }
         }
         
@@ -635,8 +725,12 @@
             }
             
             .mobile-btn {
-                font-size: 12px;
-                padding: 12px 5px;
+                font-size: 10px;
+                padding: 10px 5px;
+            }
+            
+            .logo {
+                font-size: 16px;
             }
         }
         
@@ -667,25 +761,26 @@
 </head>
 <body>
     <!-- УВЕДОМЛЕНИЕ -->
-    <div id="notification" style="position:fixed;top:80px;right:20px;background:#111;color:white;padding:15px;border-radius:10px;border-left:4px solid #d4af37;display:none;z-index:1000;"></div>
+    <div id="notification" style="position:fixed;top:80px;right:20px;background:#111;color:white;padding:15px;border-radius:10px;border-left:4px solid #d4af37;display:none;z-index:1000;box-shadow:0 5px 15px rgba(0,0,0,0.5);"></div>
 
     <!-- TELEGRAM WIDGET -->
     <div class="telegram-widget" id="telegramWidget">
         <div class="telegram-header">
-            <h4 style="margin:0;">✈️ Telegram-бот</h4>
+            <h4 style="margin:0;display:flex;align-items:center;gap:10px;">✈️ Telegram-бот</h4>
             <button class="telegram-close" onclick="toggleTelegramWidget()">×</button>
         </div>
         <p style="font-size:14px;margin-bottom:15px;">Быстрая запись на сервис и консультация</p>
-        <a href="https://t.me/arlan_autoservice_bot" target="_blank" class="telegram-btn">
-            Открыть бота
+        <a href="https://t.me/ArlanAutoServiceBot" target="_blank" class="telegram-btn">
+            📱 Открыть бота
         </a>
-        <a href="https://t.me/arlan_autoservice_bot?start=website" target="_blank" class="telegram-btn" style="background:transparent;border:1px solid white;color:white;margin-top:8px;">
-            Начать диалог
+        <a href="https://t.me/ArlanAutoServiceBot?start=website" target="_blank" class="telegram-btn" style="background:transparent;border:2px solid white;color:white;margin-top:8px;">
+            💬 Начать диалог
         </a>
     </div>
 
     <!-- TELEGRAM BUTTON -->
-    <button onclick="toggleTelegramWidget()" style="position:fixed;bottom:90px;right:20px;background:#0088cc;color:white;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;cursor:pointer;z-index:1001;box-shadow:0 4px 15px rgba(0,136,204,0.4);border:none;">
+    <button onclick="toggleTelegramWidget()" style="position:fixed;bottom:90px;right:20px;background:#0088cc;color:white;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;cursor:pointer;z-index:1001;box-shadow:0 4px 15px rgba(0,136,204,0.4);border:none;transition:all 0.3s;" 
+            onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
         ✈️
     </button>
 
@@ -701,20 +796,28 @@
     <section class="hero">
         <div class="hero-content">
             <h1>ARLAN MOTORWORKS</h1>
-            <p>Премиум автосервис в Кызыл-Кия</p>
+            <p>Электропривод систем автоматизации</p>
             
-            <div class="features">
-                <div class="feature">✅ Бесплатная диагностика при записи онлайн</div>
-                <div class="feature">✅ Гарантия 12 месяцев на все работы</div>
-                <div class="feature">✅ Срочный ремонт за 1-2 дня</div>
-                <div class="feature">✅ Отслеживание ремонта онлайн</div>
-                <div class="feature">✅ Запись через Telegram-бота</div>
+            <div class="services-hero">
+                <div class="service-item-hero">
+                    <div class="service-name">Замена масла и ТО</div>
+                    <div class="service-price">от 1500 сом</div>
+                </div>
+                <div class="service-item-hero">
+                    <div class="service-name">Ремонт ходовой части</div>
+                    <div class="service-price">от 2500 сом</div>
+                </div>
+                <div class="service-item-hero">
+                    <div class="service-name">Ремонт двигателя</div>
+                    <div class="service-price">от 5000 сом</div>
+                </div>
             </div>
             
             <div>
                 <button onclick="startQuiz()" class="btn">🔧 РАССЧИТАТЬ СТОИМОСТЬ</button>
                 <button onclick="showCalendar()" class="btn btn-outline">📅 ЗАПИСАТЬСЯ ОНЛАЙН</button>
-                <button onclick="openTelegram()" class="btn" style="background:#0088cc;color:white;">✈️ ЗАПИСЬ В TELEGRAM</button>
+                <button onclick="openTelegram()" class="btn btn-telegram">✈️ ЗАПИСЬ В TELEGRAM</button>
+                <button onclick="openWhatsApp()" class="btn btn-whatsapp">💬 WHATSAPP</button>
             </div>
         </div>
     </section>
@@ -759,7 +862,8 @@
                 <p style="color: #aaa; margin: 20px 0;">Точную стоимость назовет мастер после бесплатной диагностики</p>
                 <div>
                     <button onclick="bookWithDiscount()" class="btn">📅 ЗАПИСАТЬСЯ СО СКИДКОЙ</button>
-                    <button onclick="openTelegramWithPrice()" class="btn" style="background:#0088cc;color:white;">✈️ ЗАПИСЬ В TELEGRAM</button>
+                    <button onclick="openTelegramWithPrice()" class="btn btn-telegram">✈️ ЗАПИСЬ В TELEGRAM</button>
+                    <button onclick="openWhatsAppWithPrice()" class="btn btn-whatsapp">💬 WHATSAPP</button>
                 </div>
             </div>
         </div>
@@ -792,12 +896,6 @@
         <h2 class="section-title">НАШИ УСЛУГИ</h2>
         
         <div class="services-grid">
-            <div class="service-card">
-                <div class="price">БЕСПЛАТНО</div>
-                <h3>🔍 Компьютерная диагностика</h3>
-                <p>Полная диагностика двигателя и электронных систем автомобиля</p>
-            </div>
-            
             <div class="service-card">
                 <div class="price">от 1500 сом</div>
                 <h3>⚙️ Замена масла и ТО</h3>
@@ -889,20 +987,26 @@
             <input type="tel" id="phone" class="form-input" placeholder="Номер телефона">
             <input type="text" id="car" class="form-input" placeholder="Марка автомобиля">
             
-            <button onclick="sendContactForm()" class="btn" style="width:100%;">📱 ОТПРАВИТЬ В WHATSAPP</button>
-            <button onclick="openTelegram()" class="btn" style="width:100%;margin-top:10px;background:#0088cc;color:white;">
+            <button onclick="sendContactForm()" class="btn btn-whatsapp" style="width:100%;">📱 ОТПРАВИТЬ В WHATSAPP</button>
+            <button onclick="sendTelegramForm()" class="btn btn-telegram" style="width:100%;margin-top:10px;">
                 ✈️ ОТПРАВИТЬ В TELEGRAM
             </button>
         </div>
         
         <div class="contact-info">
-            <p>📞 <a href="tel:+996505511125" style="color:#d4af37;">+996 505 511 125</a></p>
+            <p>📞 <a href="tel:+996505511125" style="color:#d4af37;text-decoration:none;">+996 505 511 125</a></p>
             <p>📍 Кызыл-Кия, ул. Кудайбердиева Умсунай, 3</p>
             <p>⏰ 9:00 - 19:00 (Пн-Сб)</p>
             <p style="margin-top:20px;">
                 <strong>Telegram-бот:</strong> 
-                <a href="https://t.me/arlan_autoservice_bot" target="_blank" style="color:#0088cc;">
-                    @arlan_autoservice_bot
+                <a href="https://t.me/ArlanAutoServiceBot" target="_blank" style="color:#0088cc;text-decoration:none;">
+                    @ArlanAutoServiceBot
+                </a>
+            </p>
+            <p style="margin-top:10px;">
+                <strong>Сайт:</strong> 
+                <a href="https://mamuly11221-cloud.github.io" target="_blank" style="color:#d4af37;text-decoration:none;">
+                    mamuly11221-cloud.github.io
                 </a>
             </p>
         </div>
@@ -913,7 +1017,7 @@
     
     <div class="chat-widget" id="chatWidget">
         <div class="chat-header">
-            Виртуальный помощник
+            Виртуальный помощник ARLAN
             <button onclick="toggleChat()" style="background:none;border:none;color:#000;font-size:20px;cursor:pointer;float:right;">×</button>
         </div>
         
@@ -929,10 +1033,22 @@
 
     <!-- МОБИЛЬНАЯ ПАНЕЛЬ -->
     <div class="mobile-bar">
-        <a href="tel:+996505511125" class="mobile-btn">📞 ЗВОНОК</a>
-        <a href="https://wa.me/996505511125" class="mobile-btn wa">💬 WHATSAPP</a>
-        <a href="#quizSection" class="mobile-btn">💰 ЦЕНА</a>
-        <a href="#contact" class="mobile-btn">📝 ЗАПИСЬ</a>
+        <a href="tel:+996505511125" class="mobile-btn call">
+            📞
+            <span>ЗВОНОК</span>
+        </a>
+        <a href="https://wa.me/996505511125" class="mobile-btn wa">
+            💬
+            <span>WHATSAPP</span>
+        </a>
+        <a href="#quizSection" class="mobile-btn price">
+            💰
+            <span>ЦЕНА</span>
+        </a>
+        <a href="#contact" class="mobile-btn book">
+            📝
+            <span>ЗАПИСЬ</span>
+        </a>
     </div>
 
     <script>
@@ -953,14 +1069,47 @@
         function openTelegram() {
             const message = `🚗 Запись на сервис ARLAN MOTORWORKS\n\nЗдравствуйте! Хочу записаться на автосервис.`;
             const encodedMessage = encodeURIComponent(message);
-            window.open(`https://t.me/arlan_autoservice_bot?start=website`, '_blank');
+            window.open(`https://t.me/ArlanAutoServiceBot?start=website`, '_blank');
         }
         
         function openTelegramWithPrice() {
             const price = document.getElementById('priceResult').textContent;
             const message = `🚗 Запись на сервис ARLAN MOTORWORKS\n\nУслуга: ${selectedService}\nАвтомобиль: ${selectedCar}\nРасчетная стоимость: ${price} сом\nХочу записаться!`;
             const encodedMessage = encodeURIComponent(message);
-            window.open(`https://t.me/arlan_autoservice_bot?text=${encodedMessage}`, '_blank');
+            window.open(`https://t.me/ArlanAutoServiceBot?text=${encodedMessage}`, '_blank');
+        }
+        
+        function sendTelegramForm() {
+            const name = document.getElementById('name').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const car = document.getElementById('car').value.trim();
+            
+            if (!name || !phone) {
+                showNotification('Заполните имя и телефон', 'error');
+                return;
+            }
+            
+            const message = `📋 Новая заявка из формы сайта\n\nИмя: ${name}\nТелефон: ${phone}\nАвтомобиль: ${car}\n\nПрошу перезвонить для консультации!`;
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://t.me/ArlanAutoServiceBot?text=${encodedMessage}`, '_blank');
+        }
+        
+        // ==================== WHATSAPP ФУНКЦИИ ====================
+        function openWhatsApp() {
+            const message = `🚗 Запись на сервис ARLAN MOTORWORKS\n\nЗдравствуйте! Хочу записаться на автосервис.`;
+            sendToWhatsApp(message);
+        }
+        
+        function openWhatsAppWithPrice() {
+            const price = document.getElementById('priceResult').textContent;
+            const message = `🚗 Запись на сервис ARLAN MOTORWORKS\n\nУслуга: ${selectedService}\nАвтомобиль: ${selectedCar}\nРасчетная стоимость: ${price} сом\nХочу записаться!`;
+            sendToWhatsApp(message);
+        }
+        
+        function sendToWhatsApp(message) {
+            const phone = '996505511125';
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/${phone}?text=${encodedMessage}`, '_blank');
         }
         
         // ==================== УВЕДОМЛЕНИЯ ====================
@@ -1173,13 +1322,7 @@
             sendToWhatsApp(message);
         }
         
-        // ==================== WHATSAPP ====================
-        function sendToWhatsApp(message) {
-            const phone = '996505511125';
-            const encodedMessage = encodeURIComponent(message);
-            window.open(`https://wa.me/${phone}?text=${encodedMessage}`, '_blank');
-        }
-        
+        // ==================== ФОРМА КОНТАКТОВ ====================
         function sendContactForm() {
             const name = document.getElementById('name').value.trim();
             const phone = document.getElementById('phone').value.trim();
@@ -1291,8 +1434,8 @@
                 'диагностика': 'Диагностика бесплатная при записи через сайт!',
                 'время': 'Работаем с 9:00 до 19:00, Пн-Сб',
                 'адрес': 'Кызыл-Кия, ул. Кудайбердиева Умсунай, 3',
-                'запись': 'Записаться можно через Telegram-бота @arlan_autoservice_bot или по телефону +996 505 511 125',
-                'телеграм': 'Наш Telegram-бот: @arlan_autoservice_bot. Быстрая запись и консультация!'
+                'запись': 'Записаться можно через Telegram-бота @ArlanAutoServiceBot или по телефону +996 505 511 125',
+                'телеграм': 'Наш Telegram-бот: @ArlanAutoServiceBot. Быстрая запись и консультация!'
             };
             
             for (const [key, response] of Object.entries(responses)) {
@@ -1301,7 +1444,7 @@
                 }
             }
             
-            return 'Позвоните нам для уточнения: +996 505 511 125 или напишите в Telegram: @arlan_autoservice_bot';
+            return 'Позвоните нам для уточнения: +996 505 511 125 или напишите в Telegram: @ArlanAutoServiceBot';
         }
         
         // ==================== УТИЛИТЫ ====================
@@ -1371,10 +1514,10 @@
             // Инициализируем календарь
             generateCalendar();
             
-            // Показываем Telegram виджет через 5 секунд
+            // Показываем Telegram виджет через 3 секунды
             setTimeout(() => {
                 document.getElementById('telegramWidget').classList.add('active');
-            }, 5000);
+            }, 3000);
         });
         
         console.log('🚗 ARLAN MOTORWORKS загружен!');
